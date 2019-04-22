@@ -1,0 +1,243 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{52E9E1B1-AB76-4038-8734-384794B12337}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>TFive_Auto_Click</RootNamespace>
+    <AssemblyName>TFive Auto Click</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>T5 - 32.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup>
+    <TargetZone>LocalIntranet</TargetZone>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>true</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Form\FrmColorInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\FrmColorInfo.Designer.cs">
+      <DependentUpon>FrmColorInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form\FrmEasyList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\FrmEasyList.Designer.cs">
+      <DependentUpon>FrmEasyList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form\FrmMagnify.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\FrmMagnify.Designer.cs">
+      <DependentUpon>FrmMagnify.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form\FrmSleep.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\FrmSleep.Designer.cs">
+      <DependentUpon>FrmSleep.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ColorController\GetAppName.cs" />
+    <Compile Include="ColorController\Getcolor.cs" />
+    <Compile Include="ColorController\Win32Bot.cs" />
+    <Compile Include="Form\FrmMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\FrmMain.Designer.cs">
+      <DependentUpon>FrmMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LocalizationManager\IniReader.cs" />
+    <Compile Include="LocalizationManager\langinfo.cs" />
+    <Compile Include="LocalizationManager\LocalizationManager.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Values.cs" />
+    <EmbeddedResource Include="Form\FrmColorInfo.resx">
+      <DependentUpon>FrmColorInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\FrmEasyList.resx">
+      <DependentUpon>FrmEasyList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\FrmMagnify.resx">
+      <DependentUpon>FrmMagnify.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\FrmSleep.resx">
+      <DependentUpon>FrmSleep.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\FrmMain.resx">
+      <DependentUpon>FrmMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="Properties\app.manifest" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\New.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Open.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Save.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tools.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\+.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\commend.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\script.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\sleep.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\help.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\command.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\protect.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\deve.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\key.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\skipTrue.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\msg.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\skip.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\skipFalse.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Magnifying Glass\Magnifying Glass.csproj">
+      <Project>{36cd65ce-3230-4179-ad89-2b820dfd8d5d}</Project>
+      <Name>Magnifying Glass</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TFive Class\TFive Class.csproj">
+      <Project>{64a873cd-ad32-4e99-a9c7-d46d45b56910}</Project>
+      <Name>TFive Class</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TFive Theme\TFive Theme.csproj">
+      <Project>{f61532f4-3b0a-46c9-b618-9de4f8063e1f}</Project>
+      <Name>TFive Theme</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TFive UI\TFive UI.csproj">
+      <Project>{b4c543e6-f49d-403d-8275-ab212df3039d}</Project>
+      <Name>TFive UI</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Win32\Win32.csproj">
+      <Project>{058d8319-697a-4afe-b358-f4dfc50fddc9}</Project>
+      <Name>Win32</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\show.png" />
+    <None Include="Resources\sendkey.png" />
+    <None Include="Resources\return.png" />
+    <None Include="Resources\goto.png" />
+    <Content Include="T5 - 32.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
