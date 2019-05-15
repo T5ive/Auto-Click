@@ -117,12 +117,10 @@ namespace TFive_Auto_Click
             foreach (var obj in form.Controls)
             {
                 var control = (Control)obj;
-                switch (control.GetType().Name)
+                if (control.GetType().Name == "TFiveTheme")
                 {
-                    case "TFiveTheme":
-                        TranslateControlText(control, name);
-                        LocalizeChildControls(control, name);
-                        break;
+                    TranslateControlText(control, name);
+                    LocalizeChildControls(control, name);
                 }
             }
             if (adjustRightToLeft)
@@ -136,32 +134,31 @@ namespace TFive_Auto_Click
             foreach (var obj in control.Controls)
             {
                 var control2 = (Control)obj;
-                switch (control2.GetType().Name)
+                if (control2.GetType().Name == "TFiveLabel" || control2.GetType().Name == "TFiveTextBox" ||
+                    control2.GetType().Name == "TFiveRadioButton" || control2.GetType().Name == "TFiveButton" ||
+                    control2.GetType().Name == "TFiveCheckbox" || control2.GetType().Name == "TFiveHeaderLabel")
                 {
-                    case "TFiveLabel":
-                    case "TFiveTextBox":
-                    case "TFiveRadioButton":
-                    case "TFiveButton":
-                    case "TFiveCheckbox":
-                    case "TFiveHeaderLabel":
-                        TranslateControlText(control2, section);
-                        break;
-                    case "TFiveTabControl":
-                        TranslateControlText(control2, section);
-                        LocalizeChildControls(control2, section);
-                        break;
-                    case "TabPage":
-                        TranslateControlText(control2, section);
-                        LocalizeChildControls(control2, section);
-                        break;
-                    case "Panel":
-                        TranslateControlText(control2, section);
-                        LocalizeChildControls(control2, section);
-                        break;
-                    case "TFiveGroupBox":
-                        TranslateControlText(control2, section);
-                        LocalizeChildControls(control2, section);
-                        break;
+                    TranslateControlText(control2, section);
+                }
+                else if (control2.GetType().Name == "TFiveTabControl")
+                {
+                    TranslateControlText(control2, section);
+                    LocalizeChildControls(control2, section);
+                }
+                else if (control2.GetType().Name == "TabPage")
+                {
+                    TranslateControlText(control2, section);
+                    LocalizeChildControls(control2, section);
+                }
+                else if (control2.GetType().Name == "Panel")
+                {
+                    TranslateControlText(control2, section);
+                    LocalizeChildControls(control2, section);
+                }
+                else if (control2.GetType().Name == "TFiveGroupBox")
+                {
+                    TranslateControlText(control2, section);
+                    LocalizeChildControls(control2, section);
                 }
             }
         }

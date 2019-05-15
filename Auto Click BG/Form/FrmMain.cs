@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
@@ -174,7 +175,7 @@ namespace TFive_Auto_Click
         {
             if (!PromptSave())
                 return;
-            FirstSaved = false;
+            //  FirstSaved = false;
             _fileName = "Unnamed.t5proj";
             ResetGrid();
             ResetProtect();
@@ -217,7 +218,7 @@ namespace TFive_Auto_Click
 
             if (modeOpen == 1)
             {
-                var path = AppDomain.CurrentDomain.BaseDirectory;
+                var path = AppDomain.CurrentDomain.BaseDirectory + "scripts";
                 openFileDialog1.InitialDirectory = Directory.Exists(path) ? path : @"C:\";
 
                 if (openFileDialog1.ShowDialog() != DialogResult.OK) return;
@@ -270,9 +271,10 @@ namespace TFive_Auto_Click
                     radio_loop_time.Checked = bw.ReadBoolean();
                     _protectOn = bw.ReadBoolean();
                     _passLock = bw.ReadString();
+                    _numGrid = bw.ReadInt32();
                 }
 
-                FirstSaved = false;
+                //  FirstSaved = false;
                 CheckProtect();
                 Values.NumListMax++;
                 _fileName = fileName;
@@ -303,12 +305,19 @@ namespace TFive_Auto_Click
         {
             string file;
             if (!_modified) return false;
-            if (!FirstSaved && File.Exists(_fileName))
+
+            //if (FirstSaved && File.Exists(_fileName))
+            if (File.Exists(_fileName))
             {
+                var msgBox = MessageBox.Show(@"Do you want to save them?", @"Confirmation", MessageBoxButtons.YesNo);
+                if (msgBox == DialogResult.No)
+                {
+                    return false;
+                }
                 file = _fileName; //File.Exists(_fileName).ToString();
                 goto skipSave;
             }
-            var path = AppDomain.CurrentDomain.BaseDirectory;
+            var path = AppDomain.CurrentDomain.BaseDirectory + "scripts";
             saveFileDialog1.InitialDirectory = Directory.Exists(path) ? path : @"C:\";
 
             if (saveFileDialog1.ShowDialog() != DialogResult.OK) return false;
@@ -345,6 +354,7 @@ namespace TFive_Auto_Click
                     bw.Write(radio_loop_time.Checked);
                     bw.Write(_protectOn);
                     bw.Write(_passLock);
+                    bw.Write(_numGrid);
                 }
 
                 _fileName = file;
@@ -354,7 +364,7 @@ namespace TFive_Auto_Click
 
                 _modified = false;
                 CheckProject();
-                FirstSaved = true;
+               // FirstSaved = true;
                 return true;
             }
             catch
@@ -930,6 +940,26 @@ namespace TFive_Auto_Click
                 GridProcess.Rows.RemoveAt(GridProcess.CurrentCell.RowIndex);
                 ChangeValue();
             }
+        }
+        private void GridProcess_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex != 0)
+            {
+                return;
+            }
+
+            //if (e.ColumnIndex == 0)
+            //{
+            try
+            {
+                GridProcess.Sort(GridProcess.Columns[0], ListSortDirection.Ascending);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+
+            //}
         }
 
 
@@ -1632,12 +1662,13 @@ namespace TFive_Auto_Click
 
 
 
-        #endregion
 
         #endregion
 
         #endregion
 
+        #endregion
 
+       
     }
 }

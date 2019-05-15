@@ -100,18 +100,12 @@ namespace TFive_Auto_Click
         }
         public static void MouseClick(IntPtr iHandle, int Gx, int Gy, string TypeClick = "LEFT")
         {
-            POINT p = new POINT {x = Convert.ToInt16(Gx), y = Convert.ToInt16(Gy)};
+            var p = new POINT {x = Convert.ToInt16(Gx), y = Convert.ToInt16(Gy)};
             ClientToScreen(iHandle, ref p);
             SetCursorPos(p.x, p.y);
-            switch (TypeClick)
-            {
-                case "LEFT":
-                    mouse_event(MOUSEEVENTF_LEFTDOWN | MOUSEEVENTF_LEFTUP, p.x, p.y, 0, 0);
-                    break;
-                case "RIGHT":
-                    mouse_event(MOUSEEVENTF_RIGHTDOWN | MOUSEEVENTF_RIGHTUP, p.x, p.y, 0, 0);
-                    break;
-            }
+            if (TypeClick == "LEFT")
+                mouse_event(MOUSEEVENTF_LEFTDOWN | MOUSEEVENTF_LEFTUP, p.x, p.y, 0, 0);
+            else if (TypeClick == "RIGHT") mouse_event(MOUSEEVENTF_RIGHTDOWN | MOUSEEVENTF_RIGHTUP, p.x, p.y, 0, 0);
         }
         public static void MouseMove(IntPtr iHandle, int x, int y)
         {
@@ -146,8 +140,9 @@ namespace TFive_Auto_Click
             Sleep(Delay);
             SendMessage(iHandle, MOUSEEVENTF_LBUTTONUP, 0x00000001, MakeLParam(XEnd, YEnd));
             SendMessage(iHandle, MOUSEEVENTF_LBUTTONUP, 0x00000001, MakeLParam(XEnd, YEnd));
-
         }
+     
+
         public static void ClickToBG(IntPtr iHandle, int x, int y, int clickCount = 1)
         {
             SendMessage(iHandle, MOUSEEVENTF_LBUTTONDOWN, 0x00000001, MakeLParam(x, y));

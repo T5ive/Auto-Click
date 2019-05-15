@@ -288,6 +288,7 @@ namespace TFive_Auto_Click
             this.GridProcess.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.GridProcess.Size = new System.Drawing.Size(593, 318);
             this.GridProcess.TabIndex = 1;
+            this.GridProcess.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.GridProcess_CellEndEdit);
             this.GridProcess.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.GridProcess_CellValueChanged);
             this.GridProcess.SortCompare += new System.Windows.Forms.DataGridViewSortCompareEventHandler(this.GridProcess_SortCompare);
             this.GridProcess.KeyDown += new System.Windows.Forms.KeyEventHandler(this.GridProcess_KeyDown);
