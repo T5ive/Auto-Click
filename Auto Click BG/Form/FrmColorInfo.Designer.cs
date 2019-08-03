@@ -34,6 +34,7 @@
             this.timer2 = new System.Windows.Forms.Timer(this.components);
             this.tm_mouse = new System.Windows.Forms.Timer(this.components);
             this.tFive_Theme1 = new TFive.TFiveTheme();
+            this.lb_status = new TFive.TFiveLabel();
             this.panel_color = new System.Windows.Forms.Panel();
             this.txt_class = new TFive.TFiveTextBox();
             this.tFive_Label9 = new TFive.TFiveLabel();
@@ -60,7 +61,7 @@
             this.pic_click = new System.Windows.Forms.PictureBox();
             this.tFive_TextBox1 = new TFive.TFiveTextBox();
             this.tFive_HeaderLabel1 = new TFive.TFiveHeaderLabel();
-            this.lb_status = new TFive.TFiveLabel();
+            this.cb_delay = new TFive.TFiveCheckbox();
             this.tFive_Theme1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picTarget)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pic_click)).BeginInit();
@@ -84,6 +85,7 @@
             // 
             this.tFive_Theme1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
             this.tFive_Theme1.Border = true;
+            this.tFive_Theme1.Controls.Add(this.cb_delay);
             this.tFive_Theme1.Controls.Add(this.lb_status);
             this.tFive_Theme1.Controls.Add(this.panel_color);
             this.tFive_Theme1.Controls.Add(this.txt_class);
@@ -122,6 +124,18 @@
             this.tFive_Theme1.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.tFive_Theme1.TabIndex = 0;
             this.tFive_Theme1.Text = "Get Color";
+            // 
+            // lb_status
+            // 
+            this.lb_status.AutoSize = true;
+            this.lb_status.BackColor = System.Drawing.Color.Transparent;
+            this.lb_status.Font = new System.Drawing.Font("Segoe UI", 7F);
+            this.lb_status.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(100)))), ((int)(((byte)(255)))));
+            this.lb_status.Location = new System.Drawing.Point(272, 352);
+            this.lb_status.Name = "lb_status";
+            this.lb_status.Size = new System.Drawing.Size(33, 12);
+            this.lb_status.TabIndex = 46;
+            this.lb_status.Text = "Status:";
             // 
             // panel_color
             // 
@@ -477,17 +491,20 @@
             this.tFive_HeaderLabel1.TabIndex = 31;
             this.tFive_HeaderLabel1.Text = "Settings";
             // 
-            // lb_status
+            // cb_delay
             // 
-            this.lb_status.AutoSize = true;
-            this.lb_status.BackColor = System.Drawing.Color.Transparent;
-            this.lb_status.Font = new System.Drawing.Font("Segoe UI", 7F);
-            this.lb_status.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(100)))), ((int)(((byte)(255)))));
-            this.lb_status.Location = new System.Drawing.Point(272, 352);
-            this.lb_status.Name = "lb_status";
-            this.lb_status.Size = new System.Drawing.Size(33, 12);
-            this.lb_status.TabIndex = 46;
-            this.lb_status.Text = "Status:";
+            this.cb_delay.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.cb_delay.CheckedState = false;
+            this.cb_delay.Font = new System.Drawing.Font("Segoe UI", 11F);
+            this.cb_delay.Image = null;
+            this.cb_delay.Location = new System.Drawing.Point(84, 454);
+            this.cb_delay.MaximumSize = new System.Drawing.Size(600, 16);
+            this.cb_delay.MinimumSize = new System.Drawing.Size(16, 16);
+            this.cb_delay.Name = "cb_delay";
+            this.cb_delay.NoRounding = false;
+            this.cb_delay.Size = new System.Drawing.Size(64, 16);
+            this.cb_delay.TabIndex = 47;
+            this.cb_delay.Text = "Delay";
             // 
             // FrmColorInfo
             // 
@@ -548,5 +565,6 @@
         private System.Windows.Forms.Panel panel_color;
         private TFive.TFiveTextBox tFive_TextBox1;
         private TFive.TFiveLabel lb_status;
+        private TFive.TFiveCheckbox cb_delay;
     }
 }

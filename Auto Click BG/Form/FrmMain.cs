@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
+using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using TFive_Auto_Click.Properties;
@@ -11,6 +12,7 @@ using TFive_Class;
 
 namespace TFive_Auto_Click
 {
+    [Obfuscation(Feature = "Apply to member * when method or constructor: virtualization", Exclude = false)]
     public partial class FrmMain : Form
     {
         public FrmMain()
@@ -193,7 +195,6 @@ namespace TFive_Auto_Click
         #endregion
 
         #region Open
-
         //  read only FrmEasyList FrmEasy = new FrmEasyList();
         private void OpenProject_Click(object sender, EventArgs e)
         {
@@ -285,7 +286,10 @@ namespace TFive_Auto_Click
             catch (Exception)
             {
                 MessageBox.Show(@"Invalid project!", nameof(TFive), MessageBoxButtons.OK, MessageBoxIcon.Error);
-                ResetGrid();
+                if(!cb_dev.CheckedState)
+                { 
+                    ResetGrid();
+                }
                 _modified = false;
             }
 
@@ -539,7 +543,11 @@ namespace TFive_Auto_Click
             switch (script)
             {
                 case ModeScript.Click: // 1 Click Point - 0 Click Free
-                    Visible = false;
+                    if (!cb_dev.CheckedState)
+                    {
+                        Visible = false;
+                    }
+
                     using (var getColor = new FrmColorInfo())
                     {
                         getColor.ShowDialog();
@@ -551,6 +559,10 @@ namespace TFive_Auto_Click
                         AddGridColumns(1);
                         Values.CloseFrom = false;
                         ChangeValue();
+                        if (Values.Delay)
+                        {
+                            AddScript(ModeScript.Sleep);
+                        }
                     }
                     break;
                 case ModeScript.Sleep: // Sleep
@@ -1120,9 +1132,10 @@ namespace TFive_Auto_Click
         #region Function
         private void SetupBots(bool status)
         {
-
+            if (!status) return;
             for (int i = 0; i <= GridProcess.Rows.Count - 1; i++)
             {
+                
                 if (status)
                 {
                     #region Var
@@ -1557,24 +1570,26 @@ namespace TFive_Auto_Click
             {
                 if (toggle_ShowHide.Toggled)
                 {
-                    _gameProcess = GetProcessByWindowTitle(_title);
-                    _sizeDefault = Win32Bot.GetControlSize(_gameProcess.MainWindowHandle);
-                    DefaultRect = new Rectangle(Screen.PrimaryScreen.Bounds.Width / 2 - _sizeDefault.Width / 2, Screen.PrimaryScreen.Bounds.Height / 2 - _sizeDefault.Height / 2, _sizeDefault.Width, _sizeDefault.Height);
+                  //  _gameProcess = GetProcessByWindowTitle(_title);
+                  //  _sizeDefault = Win32Bot.GetControlSize(_gameProcess.MainWindowHandle);
+                  //  DefaultRect = new Rectangle(Screen.PrimaryScreen.Bounds.Width / 2 - _sizeDefault.Width / 2, Screen.PrimaryScreen.Bounds.Height / 2 - _sizeDefault.Height / 2, _sizeDefault.Width, _sizeDefault.Height);
 
-                    if (_gameProcess == null) return;
-                    SetParent(_gameProcess.MainWindowHandle, panel_game.Handle);
-                    MoveWindow(_gameProcess.MainWindowHandle, -BorderPoint.X, -BorderPoint.Y, panel_game.Width + BorderSize.Width, panel_game.Height + BorderSize.Height, true);
+                   // if (_gameProcess == null) return;
+                    GetiHandle();
+                    Win32Bot.HideApp(iHandle);
+                  //  SetParent(_gameProcess.MainWindowHandle, panel_game.Handle); // ดึงเข้า
+                  //  MoveWindow(_gameProcess.MainWindowHandle, -BorderPoint.X, -BorderPoint.Y, panel_game.Width + BorderSize.Width, panel_game.Height + BorderSize.Height, true); // ย่อ
                 }
                 else
                 {
-                    if (_gameProcess == null) return;
-                    SetParent(_gameProcess.MainWindowHandle, IntPtr.Zero);
-                    MoveWindow(_gameProcess.MainWindowHandle, DefaultRect.X, DefaultRect.Y, DefaultRect.Width, DefaultRect.Height, true);
-
-
+                   // if (_gameProcess == null) return;
+                    GetiHandle();
+                    Win32Bot.ShowAPP(iHandle);
+                    //  SetParent(_gameProcess.MainWindowHandle, IntPtr.Zero); //ดึงออก
+                    //  MoveWindow(_gameProcess.MainWindowHandle, DefaultRect.X, DefaultRect.Y, DefaultRect.Width, DefaultRect.Height, true); //ขยาย
                 }
             }
-            catch (Exception)
+            catch 
             {
                 toggle_ShowHide.Toggled = false;
                 if (!toggle_ShowHide.Toggled)
@@ -1599,6 +1614,18 @@ namespace TFive_Auto_Click
             var startKey = (Keys)Enum.Parse(typeof(Keys), comboStart.SelectedItem.ToString());
             if (GetAsyncKeyState(startKey))
                 StartBot();
+        }
+        private void cb_dev_Click(object sender, EventArgs e)
+        {
+            if (!cb_dev.CheckedState)
+            {
+                return;
+            }
+            if (TFiveInputBox.Show("Password") != "123")
+            {
+                cb_dev.CheckedState = false;
+            }
+
         }
 
         #region Languaged Manager
@@ -1663,12 +1690,13 @@ namespace TFive_Auto_Click
 
 
 
-        #endregion
 
         #endregion
 
         #endregion
 
-       
+        #endregion
+
+      
     }
 }

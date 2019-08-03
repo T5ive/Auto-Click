@@ -10,7 +10,7 @@ namespace TFive_Auto_Click
 {
     public class Win32Bot
     {
-        
+
         #region DllImport
 
         [DllImport("User32.dll")]
@@ -79,7 +79,7 @@ namespace TFive_Auto_Click
         private const int SW_SHOW = 1;
 
         #endregion
-        public static Size GetControlSize(IntPtr iHandle) 
+        public static Size GetControlSize(IntPtr iHandle)
         {
             Rect pRect;
             Size cSize = new Size();
@@ -141,7 +141,7 @@ namespace TFive_Auto_Click
             SendMessage(iHandle, MOUSEEVENTF_LBUTTONUP, 0x00000001, MakeLParam(XEnd, YEnd));
             SendMessage(iHandle, MOUSEEVENTF_LBUTTONUP, 0x00000001, MakeLParam(XEnd, YEnd));
         }
-     
+
 
         public static void ClickToBG(IntPtr iHandle, int x, int y, int clickCount = 1)
         {
@@ -173,7 +173,7 @@ namespace TFive_Auto_Click
         {
             return Task.Run(async () => await Task.Delay(delay));
         }
-       
+
         public static void WindowMove(IntPtr iHandle, int x, int y)
         {
             GetControlSize(iHandle);
@@ -188,7 +188,7 @@ namespace TFive_Auto_Click
                 StatusCheck = true;
             }
             return StatusCheck;
-        } 
+        }
         public static string GetWinTitle(IntPtr iHandle)
         {
             const int nChars = 256;
@@ -199,7 +199,7 @@ namespace TFive_Auto_Click
         //{
         //    PostMessage(iHandle, MOUSEEVENTF_KEYDOWN, (int)Keys.Control, 0);
         //    PostMessage(iHandle, MOUSEEVENTF_KEYDOWN, (int)Keys.A, 0);
-        //    PostMessage(iHandle, MOUSEEVENTF_KEYUP, (int)Keys.Control, 0);
+        //    PostMessage(iHandle, 256u, (int)Keys.Control, 0);
         //}
 
         public static void sendKeyBG(IntPtr iHandle, Keys key)

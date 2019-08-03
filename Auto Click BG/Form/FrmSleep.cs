@@ -36,7 +36,8 @@ namespace TFive_Auto_Click
 
         private void frm_sleep_Load(object sender, EventArgs e)
         {
-            txt_time.Focus();
+           // txt_time.Focus();
+            txt_time.TB.Focus();
         }
     }
 }

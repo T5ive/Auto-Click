@@ -31,8 +31,8 @@ namespace TFive_Auto_Click
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            TFive.ControlRenderer controlRenderer1 = new TFive.ControlRenderer();
-            TFive.TFiveColorTable tFiveColorTable1 = new TFive.TFiveColorTable();
+            TFive.ControlRenderer controlRenderer2 = new TFive.ControlRenderer();
+            TFive.TFiveColorTable tFiveColorTable2 = new TFive.TFiveColorTable();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmMain));
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
@@ -85,6 +85,7 @@ namespace TFive_Auto_Click
             this.panel3 = new System.Windows.Forms.Panel();
             this.lblLanguageAuthor = new TFive.TFiveLabel();
             this.gbSettings = new TFive.TFiveGroupBox();
+            this.cb_dev = new TFive.TFiveCheckbox();
             this.cb_logs = new TFive.TFiveCheckbox();
             this.comboStart = new TFive.TFiveComboBox();
             this.lbLang = new TFive.TFiveLabel();
@@ -793,6 +794,7 @@ namespace TFive_Auto_Click
             // 
             this.gbSettings.BackColor = System.Drawing.Color.Transparent;
             this.gbSettings.BGColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            this.gbSettings.Controls.Add(this.cb_dev);
             this.gbSettings.Controls.Add(this.cb_logs);
             this.gbSettings.Controls.Add(this.comboStart);
             this.gbSettings.Controls.Add(this.lbLang);
@@ -808,6 +810,22 @@ namespace TFive_Auto_Click
             this.gbSettings.Size = new System.Drawing.Size(377, 148);
             this.gbSettings.TabIndex = 7;
             this.gbSettings.Text = "Settings";
+            // 
+            // cb_dev
+            // 
+            this.cb_dev.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.cb_dev.CheckedState = false;
+            this.cb_dev.Font = new System.Drawing.Font("Segoe UI", 11F);
+            this.cb_dev.Image = null;
+            this.cb_dev.Location = new System.Drawing.Point(262, 33);
+            this.cb_dev.MaximumSize = new System.Drawing.Size(600, 16);
+            this.cb_dev.MinimumSize = new System.Drawing.Size(16, 16);
+            this.cb_dev.Name = "cb_dev";
+            this.cb_dev.NoRounding = false;
+            this.cb_dev.Size = new System.Drawing.Size(109, 16);
+            this.cb_dev.TabIndex = 8;
+            this.cb_dev.Text = "Dev Mode";
+            this.cb_dev.Click += new System.EventHandler(this.cb_dev_Click);
             // 
             // cb_logs
             // 
@@ -1037,9 +1055,9 @@ namespace TFive_Auto_Click
             this.tFiveMenuStrip.Location = new System.Drawing.Point(0, 0);
             this.tFiveMenuStrip.MinimumSize = new System.Drawing.Size(0, 30);
             this.tFiveMenuStrip.Name = "tFiveMenuStrip";
-            controlRenderer1.ColorTable = tFiveColorTable1;
-            controlRenderer1.RoundedEdges = true;
-            this.tFiveMenuStrip.Renderer = controlRenderer1;
+            controlRenderer2.ColorTable = tFiveColorTable2;
+            controlRenderer2.RoundedEdges = true;
+            this.tFiveMenuStrip.Renderer = controlRenderer2;
             this.tFiveMenuStrip.Size = new System.Drawing.Size(691, 30);
             this.tFiveMenuStrip.TabIndex = 0;
             this.tFiveMenuStrip.Text = "tFive_MenuStrip1";
@@ -1097,7 +1115,7 @@ namespace TFive_Auto_Click
             this.addClickToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(100)))), ((int)(((byte)(255)))));
             this.addClickToolStripMenuItem.Image = global::TFive_Auto_Click.Properties.Resources.script;
             this.addClickToolStripMenuItem.Name = "addClickToolStripMenuItem";
-            this.addClickToolStripMenuItem.Size = new System.Drawing.Size(179, 24);
+            this.addClickToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
             this.addClickToolStripMenuItem.Text = "Add Click";
             this.addClickToolStripMenuItem.Click += new System.EventHandler(this.sleepsToolStripMenuItem_Click);
             // 
@@ -1107,13 +1125,13 @@ namespace TFive_Auto_Click
             this.sendKeysBGToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(100)))), ((int)(((byte)(255)))));
             this.sendKeysBGToolStripMenuItem.Image = global::TFive_Auto_Click.Properties.Resources.sendkey;
             this.sendKeysBGToolStripMenuItem.Name = "sendKeysBGToolStripMenuItem";
-            this.sendKeysBGToolStripMenuItem.Size = new System.Drawing.Size(179, 24);
+            this.sendKeysBGToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
             this.sendKeysBGToolStripMenuItem.Text = "Send Keys";
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(176, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(177, 6);
             // 
             // addCommandToolStripMenuItem
             // 
@@ -1130,7 +1148,7 @@ namespace TFive_Auto_Click
             this.addCommandToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(100)))), ((int)(((byte)(255)))));
             this.addCommandToolStripMenuItem.Image = global::TFive_Auto_Click.Properties.Resources.command;
             this.addCommandToolStripMenuItem.Name = "addCommandToolStripMenuItem";
-            this.addCommandToolStripMenuItem.Size = new System.Drawing.Size(179, 24);
+            this.addCommandToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
             this.addCommandToolStripMenuItem.Text = "Add Command";
             // 
             // goToToolStripMenuItem
@@ -1208,7 +1226,7 @@ namespace TFive_Auto_Click
             this.commendToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(100)))), ((int)(((byte)(255)))));
             this.commendToolStripMenuItem.Image = global::TFive_Auto_Click.Properties.Resources.commend;
             this.commendToolStripMenuItem.Name = "commendToolStripMenuItem";
-            this.commendToolStripMenuItem.Size = new System.Drawing.Size(179, 24);
+            this.commendToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
             this.commendToolStripMenuItem.Text = "Add Comment";
             this.commendToolStripMenuItem.Click += new System.EventHandler(this.commendToolStripMenuItem_Click);
             // 
@@ -1217,14 +1235,14 @@ namespace TFive_Auto_Click
             this.sleepToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(100)))), ((int)(((byte)(255)))));
             this.sleepToolStripMenuItem.Image = global::TFive_Auto_Click.Properties.Resources.sleep;
             this.sleepToolStripMenuItem.Name = "sleepToolStripMenuItem";
-            this.sleepToolStripMenuItem.Size = new System.Drawing.Size(179, 24);
+            this.sleepToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
             this.sleepToolStripMenuItem.Text = "Add Sleep";
             this.sleepToolStripMenuItem.Click += new System.EventHandler(this.sleepToolStripMenuItem_Click);
             // 
             // toolStripSeparator5
             // 
             this.toolStripSeparator5.Name = "toolStripSeparator5";
-            this.toolStripSeparator5.Size = new System.Drawing.Size(176, 6);
+            this.toolStripSeparator5.Size = new System.Drawing.Size(177, 6);
             // 
             // devoloperToolStripMenuItem
             // 
@@ -1236,7 +1254,7 @@ namespace TFive_Auto_Click
             this.devoloperToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(100)))), ((int)(((byte)(255)))));
             this.devoloperToolStripMenuItem.Image = global::TFive_Auto_Click.Properties.Resources.deve;
             this.devoloperToolStripMenuItem.Name = "devoloperToolStripMenuItem";
-            this.devoloperToolStripMenuItem.Size = new System.Drawing.Size(179, 24);
+            this.devoloperToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
             this.devoloperToolStripMenuItem.Text = "Developer";
             // 
             // protectCodeToolStripMenuItem
@@ -1424,5 +1442,6 @@ namespace TFive_Auto_Click
         private ToolStripMenuItem resetIntToolStripMenuItem;
         private ToolStripMenuItem goToByIntToolStripMenuItem;
         private TFive.TFiveCheckbox cb_logs;
+        private TFive.TFiveCheckbox cb_dev;
     }
 }

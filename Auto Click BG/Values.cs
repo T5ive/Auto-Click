@@ -11,6 +11,7 @@ namespace TFive_Auto_Click
         public static string TitleName;
         public static string Color;
         public static bool CloseFrom = false;
+        public static bool Delay = false;
 
         public static int Mode;
         public static int NumListMax = 0;

@@ -214,7 +214,7 @@ namespace TFive_Class
         {
             get
             {
-                CreateParams cp = base.CreateParams;
+                var cp = base.CreateParams;
                 cp.ClassStyle |= CsDropshadow;
                 return cp;
             }
@@ -227,35 +227,42 @@ namespace TFive_Class
         /// <returns></returns>
         public static string Show(string message)
         {
-            TFiveInputBox box = new TFiveInputBox { lblMessage = { Text = message } };
-            box.ShowDialog();
+            using (var box = new TFiveInputBox { lblMessage = { Text = message } })
+            {
+                box.ShowDialog();
 
-            return box._txtInput;
+                return box._txtInput;
+            }
         }
         public static string Show(string message, int maxLength)
         {
-            TFiveInputBox box = new TFiveInputBox {lblMessage = {Text = message}, txtInput = {MaxLength = maxLength}};
-            box.ShowDialog();
+            using (var box = new TFiveInputBox { lblMessage = { Text = message }, txtInput = { MaxLength = maxLength } })
+            {
+                box.ShowDialog();
 
-            return box._txtInput;
+                return box._txtInput;
+            }
         }
         public string Show(string message, string OK)
         {
             btnOK = OK;
-            TFiveInputBox box = new TFiveInputBox { lblMessage = { Text = message }};
-            
-            box.ShowDialog();
+            using (var box = new TFiveInputBox { lblMessage = { Text = message } })
+            {
+                box.ShowDialog();
 
-            return box._txtInput;
+                return box._txtInput;
+            }
         }
         public string Show(string message, string OK, string Cancel)
         {
             btnOK = OK;
             btnCancel = Cancel;
-            TFiveInputBox box = new TFiveInputBox { lblMessage = { Text = message } };
-            box.ShowDialog();
+            using (var box = new TFiveInputBox { lblMessage = { Text = message } })
+            {
+                box.ShowDialog();
 
-            return box._txtInput;
+                return box._txtInput;
+            }
         }
 
         protected override void OnPaint(PaintEventArgs e)
