@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Drawing;
@@ -21,6 +20,7 @@ namespace TFive_Auto_Click
         }
 
         #region Form Load/Close
+
         protected virtual void CheckFile()
         {
             if (!File.Exists("TFive Magnify.dll"))
@@ -43,8 +43,8 @@ namespace TFive_Auto_Click
                 MessageBox.Show(@"File ""TFive Win32.dll"" is missing!!", @"TFive Auto Click", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 Application.Exit();
             }
-
         }
+
         private void LoadLocation()
         {
             if (Settings.Default.Maximised)
@@ -73,6 +73,7 @@ namespace TFive_Auto_Click
                 Size = Settings.Default.Size;
             }
         }
+
         private void CloseLocation()
         {
             Settings.Default.topMost = cb_topMost.CheckedState;
@@ -87,12 +88,14 @@ namespace TFive_Auto_Click
                     Settings.Default.Maximised = true;
                     Settings.Default.Minimised = false;
                     break;
+
                 case FormWindowState.Normal:
                     Settings.Default.Location = Location;
                     Settings.Default.Size = Size;
                     Settings.Default.Maximised = false;
                     Settings.Default.Minimised = false;
                     break;
+
                 default:
                     Settings.Default.Location = RestoreBounds.Location;
                     Settings.Default.Size = RestoreBounds.Size;
@@ -102,6 +105,7 @@ namespace TFive_Auto_Click
             }
             Settings.Default.Save();
         }
+
         private void LoadSettings()
         {
             Size = new Size(Settings.Default.sizeWidth, Settings.Default.sizeHeight);
@@ -114,12 +118,12 @@ namespace TFive_Auto_Click
             cbbLanguages.SelectedIndex = Settings.Default.Lang;
             LoadLanguage();
         }
+
         private void FrmMain_Load(object sender, EventArgs e)
         {
             CheckFile();
             CheckProject();
             _start = true;
-
         }
 
         private void FrmMain_Shown(object sender, EventArgs e)
@@ -127,6 +131,7 @@ namespace TFive_Auto_Click
             LoadLocation();
             LoadSettings();
         }
+
         private void FrmMain_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (!OnWindowClosing())
@@ -137,7 +142,7 @@ namespace TFive_Auto_Click
             CloseLocation();
         }
 
-        #endregion
+        #endregion Form Load/Close
 
         #region Menu
 
@@ -148,7 +153,8 @@ namespace TFive_Auto_Click
         public bool FirstSaved;
         private bool _start;
         private int _numGrid;
-        #endregion
+
+        #endregion Var
 
         #region Title Name
 
@@ -162,14 +168,15 @@ namespace TFive_Auto_Click
             //    panel_protect.Dock = DockStyle.Fill;
             //}
         }
+
         private void CheckProject()
         {
             Text = Title;
         }
+
         public string Title => $"{Path.GetFileName(_fileName)}{(_modified ? "*" : "")} - TFive {(StartStop ? ": Running" : "")}";
 
-        #endregion
-
+        #endregion Title Name
 
         #region New
 
@@ -184,7 +191,6 @@ namespace TFive_Auto_Click
 
             _modified = false;
             CheckProject();
-
         }
 
         private void newProject_Click(object sender, EventArgs e)
@@ -192,9 +198,10 @@ namespace TFive_Auto_Click
             NewProjects();
         }
 
-        #endregion
+        #endregion New
 
         #region Open
+
         //  read only FrmEasyList FrmEasy = new FrmEasyList();
         private void OpenProject_Click(object sender, EventArgs e)
         {
@@ -206,7 +213,6 @@ namespace TFive_Auto_Click
             {
                 OpenProjects(1);
             }
-
         }
 
         public void OpenProjects(int modeOpen)
@@ -247,7 +253,6 @@ namespace TFive_Auto_Click
                     Values.NumListMax = (n - 11) / 3;
                     for (var i = 0; i < m; ++i)
                     {
-
                         GridProcess.Rows.Add();
                         for (var j = 0; j < n; ++j)
                         {
@@ -286,17 +291,15 @@ namespace TFive_Auto_Click
             catch (Exception)
             {
                 MessageBox.Show(@"Invalid project!", nameof(TFive), MessageBoxButtons.OK, MessageBoxIcon.Error);
-                if(!cb_dev.CheckedState)
-                { 
+                if (!cb_dev.CheckedState)
+                {
                     ResetGrid();
                 }
                 _modified = false;
             }
-
         }
 
-
-        #endregion
+        #endregion Open
 
         #region Save
 
@@ -365,10 +368,9 @@ namespace TFive_Auto_Click
                 //FileName = saveFileDialog1.FileName;
                 //saveFileDialog1.FileName = FileName;
 
-
                 _modified = false;
                 CheckProject();
-               // FirstSaved = true;
+                // FirstSaved = true;
                 return true;
             }
             catch
@@ -394,17 +396,19 @@ namespace TFive_Auto_Click
             {
                 case DialogResult.Yes:
                     return SaveProjects();
+
                 case DialogResult.No:
                     return true;
+
                 case DialogResult.Cancel:
                     return false;
+
                 default:
                     return false;
             }
         }
 
-        #endregion
-
+        #endregion Save
 
         #region Tools
 
@@ -419,6 +423,7 @@ namespace TFive_Auto_Click
         {
             AddScript(ModeScript.Sleep);
         }
+
         private void commendToolStripMenuItem_Click(object sender, EventArgs e)
         {
             AddScript(ModeScript.Comment);
@@ -453,17 +458,18 @@ namespace TFive_Auto_Click
         {
             AddScript(ModeScript.ResetInt);
         }
+
         private void goToByIntToolStripMenuItem_Click(object sender, EventArgs e)
         {
             AddScript(ModeScript.GotoInt);
         }
 
-
-        #endregion
+        #endregion ToolStrip
 
         #region Add Script
 
         private int _readOnly = 11;
+
         private enum ModeScript
         {
             TFive, //0
@@ -477,7 +483,6 @@ namespace TFive_Auto_Click
             Int, //8
             ResetInt, //9
             GotoInt // 10
-
         }
 
         //private void AddScript(int _Mode)
@@ -538,7 +543,7 @@ namespace TFive_Auto_Click
             //        break;
             //}
 
-            #endregion
+            #endregion Old
 
             switch (script)
             {
@@ -565,6 +570,7 @@ namespace TFive_Auto_Click
                         }
                     }
                     break;
+
                 case ModeScript.Sleep: // Sleep
                     Visible = false;
                     using (var frmSleep = new FrmSleep())
@@ -580,6 +586,7 @@ namespace TFive_Auto_Click
                         ChangeValue();
                     }
                     break;
+
                 case ModeScript.Comment: // Comment
                     AddGridProcess(null, null, null, null, null, null, null, null, null, 3);
                     ChangeValue();
@@ -604,28 +611,32 @@ namespace TFive_Auto_Click
                     AddGridProcess("Message Box", "Text here", null, null, 1, null, null, null, null, 7);
                     ChangeValue();
                     break;
+
                 case ModeScript.Int: // New Int
                     AddGridProcess("New Int", null, null, null, 0, null, null, null, null, 8);
                     ChangeValue();
                     break;
+
                 case ModeScript.ResetInt: // Reset Int
                     AddGridProcess("Message Box", null, null, null, 0, null, null, null, null, 9);
                     ChangeValue();
                     break;
+
                 case ModeScript.GotoInt: // Goto
                     AddGridProcess("Go to by Int", null, null, null, 1, null, null, null, null, 10);
                     ChangeValue();
                     break;
-
             }
 
             NumRow();
         }
+
         private void AddGridProcess(object processName, object targetTitle, object colorX, object colorY, object color, object clickX, object clickY, object click, object point, object mode)
         {
             GridProcess.Rows.Add(_numGrid, processName, targetTitle, colorX, colorY, color, clickX, clickY, click, point, mode);
             _numGrid += 1;
         }
+
         private void ResetGrid()
         {
             GridProcess.Rows.Clear();
@@ -634,7 +645,6 @@ namespace TFive_Auto_Click
                 GridProcess.Columns.Remove("color_x" + i);
                 GridProcess.Columns.Remove("color_y" + i);
                 GridProcess.Columns.Remove("color_ful" + i);
-
             }
             Values.NumListMax = 0;
             Values.NumListCurrent = 1;
@@ -648,7 +658,6 @@ namespace TFive_Auto_Click
 
         private void AddGridColumns(int num)
         {
-
             switch (num)
             {
                 case 1: // Click Add
@@ -662,7 +671,6 @@ namespace TFive_Auto_Click
                             GridProcess.Columns.Add("color_ful" + (Values.NumListCurrent + 1), "Color " + (Values.NumListCurrent + 1));
                             SetReadOnly();
                             Values.NumListCurrent++;
-
                         }
                         AddGridRows(Values.NumListColor);
                         break;
@@ -680,18 +688,19 @@ namespace TFive_Auto_Click
                         Values.NumListCurrent++;
                     }
                     break;
+
                 default:
 
                     break;
             }
         }
 
-
         private void SetReadOnly()
         {
             GridProcess.Columns[_readOnly].ReadOnly = true;
             _readOnly++;
         }
+
         private void NumRow()
         {
             foreach (DataGridViewRow row in GridProcess.Rows)
@@ -699,9 +708,9 @@ namespace TFive_Auto_Click
                 row.HeaderCell.Value = $"{row.Index + 1}";
             }
         }
+
         private void AddGridRows(int num)
         {
-
             var index = GridProcess.Rows.Add();
             GridProcess.Rows[index].Cells[0].Value = _numGrid;
             _numGrid += 1;
@@ -735,7 +744,6 @@ namespace TFive_Auto_Click
             var j = 1;
             for (var i = 1; i <= (num - 1) * 3; i++) // i = Cells, num = NumListColor
             {
-
                 var array = Values.ListColorString[j].Split(new[]
                 {
                         ","
@@ -758,8 +766,7 @@ namespace TFive_Auto_Click
             }
         }
 
-        #endregion
-
+        #endregion Add Script
 
         #region Develope
 
@@ -768,11 +775,13 @@ namespace TFive_Auto_Click
         private string _passLock = "";
         private string _passUnlock = "";
         private string _creator = nameof(TFive);
+
         private void ResetProtect()
         {
             _protectOn = false;
             CheckProtect();
         }
+
         private void CheckProtect()
         {
             txt_creator.Text = _creator;
@@ -796,7 +805,6 @@ namespace TFive_Auto_Click
         {
             if (protectCodeToolStripMenuItem.Checked)
             {
-
                 _passOriginal = TFiveInputBox.Show("Input Password '8' Keys", 8);
 
                 if (string.IsNullOrWhiteSpace(_passOriginal) || _passOriginal.Length < 8)
@@ -848,17 +856,14 @@ namespace TFive_Auto_Click
                 {
                     showHideToolStripMenuItem.Checked = true;
                 }
-
-
             }
         }
 
-        #endregion
+        #endregion Develope
 
-        #endregion
+        #endregion Tools
 
-
-        #endregion
+        #endregion Menu
 
         #region Tab Control
 
@@ -896,7 +901,6 @@ namespace TFive_Auto_Click
 
                     dgvCopy.AllowUserToAddRows = false;
                     dgvCopy.Refresh();
-
                 }
                 catch
                 {
@@ -904,15 +908,17 @@ namespace TFive_Auto_Click
                 }
             }
         }
+
         private void GridProcess_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
             if (_start)
             {
                 ChangeValue();
             }
-
         }
+
 #pragma warning disable CC0091 // Use static method
+
         private void GridProcess_SortCompare(object sender, DataGridViewSortCompareEventArgs e)
 #pragma warning restore CC0091 // Use static method
         {
@@ -930,9 +936,8 @@ namespace TFive_Auto_Click
             {
                 throw;
             }
-
-
         }
+
         private void GridProcess_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Control || e.KeyCode == Keys.ControlKey && e.KeyCode == Keys.C)
@@ -942,7 +947,6 @@ namespace TFive_Auto_Click
 
             if (e.KeyCode == Keys.Control || e.KeyCode == Keys.ControlKey && e.KeyCode == Keys.V)
             {
-
             }
 
             if (e.KeyCode != Keys.Delete) return;
@@ -953,6 +957,7 @@ namespace TFive_Auto_Click
                 ChangeValue();
             }
         }
+
         private void GridProcess_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
             if (e.ColumnIndex != 0)
@@ -974,10 +979,9 @@ namespace TFive_Auto_Click
             //}
         }
 
+        #endregion DataGrid
 
-        #endregion
-
-        #endregion
+        #endregion Project
 
         #region Start
 
@@ -1004,6 +1008,7 @@ namespace TFive_Auto_Click
                 AppendText(logs_box, s, c);
             }));
         }
+
         public void WriteOutput(string s, Color c)
         {
             Invoke(new MethodInvoker(delegate
@@ -1017,30 +1022,31 @@ namespace TFive_Auto_Click
                         "\n"),
                     c);
             }));
-
         }
 
-        #endregion
+        #endregion Logs
 
         #region Bot
 
         #region Var
+
         [DllImport("user32.dll")] public static extern bool GetAsyncKeyState(Keys vKey);
+
         private int TimeClick = 1;
         public static IntPtr iHandle;
-        readonly GetAppName GetApp = new GetAppName();
+        private readonly GetAppName GetApp = new GetAppName();
         private bool statusTF;
         private bool StartStop;
 
-        #endregion
+        #endregion Var
 
         #region SetUp
-
 
         private void bt_start_Click(object sender, EventArgs e)
         {
             StartBot();
         }
+
         private void StartBot()
         {
             bt_start_stop.Text = bt_start_stop.Text.EndsWith("Stop") ? "Start" : "Stop";
@@ -1057,6 +1063,7 @@ namespace TFive_Auto_Click
                         tFiveMenuStrip.Enabled = false;
                         gbAutoClick.Enabled = false;
                         break;
+
                     case "Start":
                         TimeClick = 1;
                         Bots_Worker.CancelAsync();
@@ -1074,11 +1081,11 @@ namespace TFive_Auto_Click
             {
                 throw;
             }
-
         }
 
         private int _numDelay;
         private int _numTimes;
+
         private void Bots_Worker_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
         {
             while (!Bots_Worker.CancellationPending)
@@ -1119,23 +1126,23 @@ namespace TFive_Auto_Click
                 }
             }
             SetupBots(false);
-
         }
+
         private void GetiHandle()
         {
             GetApp.AppName();
             iHandle = GetAppName.appName;
         }
 
-        #endregion
+        #endregion SetUp
 
         #region Function
+
         private void SetupBots(bool status)
         {
             if (!status) return;
             for (int i = 0; i <= GridProcess.Rows.Count - 1; i++)
             {
-                
                 if (status)
                 {
                     #region Var
@@ -1152,7 +1159,8 @@ namespace TFive_Auto_Click
                     var color1 = 0;
 
                     string manualLogs;
-                    #endregion
+
+                    #endregion Var
 
                     #region Set Value For Click
 
@@ -1177,10 +1185,9 @@ namespace TFive_Auto_Click
                             GetAppName.APP = split[0];
                             GetAppName.CLASS = split[1];
                             GetiHandle();
-
                         }
 
-                        #endregion
+                        #endregion AddiHandle
 
                         #region Set ClickXY, Times
 
@@ -1197,7 +1204,7 @@ namespace TFive_Auto_Click
                             clickTimes = 0;
                         }
 
-                        #endregion
+                        #endregion Set ClickXY, Times
 
                         #region Set Point
 
@@ -1210,8 +1217,7 @@ namespace TFive_Auto_Click
                             point = 0;
                         }
 
-
-                        #endregion
+                        #endregion Set Point
 
                         #region SetXY Color
 
@@ -1228,19 +1234,16 @@ namespace TFive_Auto_Click
                             color1 = 0;
                         }
 
-                        #endregion
-
+                        #endregion SetXY Color
                     }
 
-
-                    #endregion
+                    #endregion Set Value For Click
 
                     #region SetLogs
-                    
-                        manualLogs = GridProcess.Rows[i].Cells[1].Value.ToString();
 
-                    #endregion
+                    manualLogs = GridProcess.Rows[i].Cells[1].Value.ToString();
 
+                    #endregion SetLogs
 
                     switch (_Mode)
                     {
@@ -1262,7 +1265,7 @@ namespace TFive_Auto_Click
 
                             break;
 
-                        #endregion
+                        #endregion Click Free
 
                         case 1:
 
@@ -1286,11 +1289,10 @@ namespace TFive_Auto_Click
                                 else
                                 {
                                     statusTF = false;
-
                                 }
                             }
 
-                            #endregion
+                            #endregion Color = 1
 
                             #region Color > 1
 
@@ -1330,7 +1332,7 @@ namespace TFive_Auto_Click
                                         color_X = 0;
                                     }
 
-                                    #endregion
+                                    #endregion SetXY Color
 
                                     if (GetColor.GetColorFast(iHandle, colorX_X, colorY_X, color_X, 4))
                                     {
@@ -1340,7 +1342,6 @@ namespace TFive_Auto_Click
                                     {
                                         countTrue = 0;
                                     }
-
                                 }
 
                                 if (countTrue == point)
@@ -1360,11 +1361,11 @@ namespace TFive_Auto_Click
                                 }
                             }
 
-                            #endregion
+                            #endregion Color > 1
 
                             break;
 
-                        #endregion
+                        #endregion Click Color
 
                         case 2:
 
@@ -1389,7 +1390,7 @@ namespace TFive_Auto_Click
                             Win32Bot.AwaitSleep(sleep);
                             break;
 
-                        #endregion
+                        #endregion Sleep
 
                         case 4:
 
@@ -1404,7 +1405,7 @@ namespace TFive_Auto_Click
                             i = skip;
                             break;
 
-                        #endregion
+                        #endregion Goto
 
                         case 5:
 
@@ -1424,7 +1425,7 @@ namespace TFive_Auto_Click
 
                             break;
 
-                        #endregion
+                        #endregion Goto True
 
                         case 6:
 
@@ -1443,7 +1444,7 @@ namespace TFive_Auto_Click
 
                             break;
 
-                        #endregion
+                        #endregion Goto False
 
                         case 7:
 
@@ -1452,8 +1453,7 @@ namespace TFive_Auto_Click
                             MessageBox.Show(GridProcess.Rows[i].Cells[1].Value.ToString());
                             break;
 
-                            #endregion
-
+                            #endregion MessageBox
                     }
 
                     #region Delay
@@ -1468,37 +1468,37 @@ namespace TFive_Auto_Click
                         Win32Bot.AwaitSleep(10);
                     }
 
-                    #endregion
-
+                    #endregion Delay
                 }
                 else
                 {
                     break;
                 }
             }
-
-
         }
-        #endregion
 
-        #endregion
+        #endregion Function
+
+        #endregion Bot
 
         #region Get Title Processbox
 
         private string _title;
+
         // private string processEXE;
         private void combo_process_SelectedIndexChanged_1(object sender, EventArgs e)
         {
             var split = combo_process.SelectedItem.ToString().Split(new[] { " | " }, StringSplitOptions.None);
             //     processEXE = split[0];
             _title = split[1]; //combo_process.SelectedItem.ToString().Remove(0, combo_process.SelectedItem.ToString().IndexOf("|", StringComparison.Ordinal) + 2);
-
         }
+
         private void combo_process_Click(object sender, EventArgs e)
         {
             combo_process.Items.Clear();
             ProcessList();
         }
+
         private void ProcessList()
         {
             var processList = Process.GetProcesses();
@@ -1515,12 +1515,14 @@ namespace TFive_Auto_Click
         #endregion Get Title Processbox
 
         #region Setting Value
+
         private void txt_delay_TextChanged(object sender, EventArgs e)
         {
             ChangeValue();
         }
 
 #pragma warning disable CC0057 // Unused parameters
+
         private void radio_loop_time_CheckedChanged(object sender)
 #pragma warning restore CC0057 // Unused parameters
         {
@@ -1536,7 +1538,8 @@ namespace TFive_Auto_Click
         {
             ChangeValue();
         }
-        #endregion
+
+        #endregion Setting Value
 
         #region Show/Hide
 
@@ -1551,7 +1554,6 @@ namespace TFive_Auto_Click
         public static Rectangle DefaultRect;
         public static Point BorderPoint = new Point(10, 30);
         public static Size BorderSize = new Size(BorderPoint.X * 2, BorderPoint.Y + 10);
-
 
         public static Process GetProcessByWindowTitle(string windowTitle)
         {
@@ -1570,26 +1572,26 @@ namespace TFive_Auto_Click
             {
                 if (toggle_ShowHide.Toggled)
                 {
-                  //  _gameProcess = GetProcessByWindowTitle(_title);
-                  //  _sizeDefault = Win32Bot.GetControlSize(_gameProcess.MainWindowHandle);
-                  //  DefaultRect = new Rectangle(Screen.PrimaryScreen.Bounds.Width / 2 - _sizeDefault.Width / 2, Screen.PrimaryScreen.Bounds.Height / 2 - _sizeDefault.Height / 2, _sizeDefault.Width, _sizeDefault.Height);
+                    //  _gameProcess = GetProcessByWindowTitle(_title);
+                    //  _sizeDefault = Win32Bot.GetControlSize(_gameProcess.MainWindowHandle);
+                    //  DefaultRect = new Rectangle(Screen.PrimaryScreen.Bounds.Width / 2 - _sizeDefault.Width / 2, Screen.PrimaryScreen.Bounds.Height / 2 - _sizeDefault.Height / 2, _sizeDefault.Width, _sizeDefault.Height);
 
-                   // if (_gameProcess == null) return;
+                    // if (_gameProcess == null) return;
                     GetiHandle();
                     Win32Bot.HideApp(iHandle);
-                  //  SetParent(_gameProcess.MainWindowHandle, panel_game.Handle); // ดึงเข้า
-                  //  MoveWindow(_gameProcess.MainWindowHandle, -BorderPoint.X, -BorderPoint.Y, panel_game.Width + BorderSize.Width, panel_game.Height + BorderSize.Height, true); // ย่อ
+                    //  SetParent(_gameProcess.MainWindowHandle, panel_game.Handle); // ดึงเข้า
+                    //  MoveWindow(_gameProcess.MainWindowHandle, -BorderPoint.X, -BorderPoint.Y, panel_game.Width + BorderSize.Width, panel_game.Height + BorderSize.Height, true); // ย่อ
                 }
                 else
                 {
-                   // if (_gameProcess == null) return;
+                    // if (_gameProcess == null) return;
                     GetiHandle();
                     Win32Bot.ShowAPP(iHandle);
                     //  SetParent(_gameProcess.MainWindowHandle, IntPtr.Zero); //ดึงออก
                     //  MoveWindow(_gameProcess.MainWindowHandle, DefaultRect.X, DefaultRect.Y, DefaultRect.Width, DefaultRect.Height, true); //ขยาย
                 }
             }
-            catch 
+            catch
             {
                 toggle_ShowHide.Toggled = false;
                 if (!toggle_ShowHide.Toggled)
@@ -1597,24 +1599,26 @@ namespace TFive_Auto_Click
                     WriteOutput("Error", Color.Red);
                 }
             }
-
         }
 
-        #endregion
+        #endregion Show/Hide
 
-        #endregion
+        #endregion Start
 
         #region About
+
         private void cb_topMost_Click(object sender, EventArgs e)
         {
             TopMost = cb_topMost.CheckedState;
         }
+
         private void tm_checkhtk_Tick(object sender, EventArgs e)
         {
             var startKey = (Keys)Enum.Parse(typeof(Keys), comboStart.SelectedItem.ToString());
             if (GetAsyncKeyState(startKey))
                 StartBot();
         }
+
         private void cb_dev_Click(object sender, EventArgs e)
         {
             if (!cb_dev.CheckedState)
@@ -1625,7 +1629,6 @@ namespace TFive_Auto_Click
             {
                 cb_dev.CheckedState = false;
             }
-
         }
 
         #region Languaged Manager
@@ -1641,6 +1644,7 @@ namespace TFive_Auto_Click
         }
 
         public LocalizationManager LclzManager;
+
         private void cbbLanguages_SelectionChangeCommitted(object sender, EventArgs e)
         {
             LoadLanguage();
@@ -1652,6 +1656,7 @@ namespace TFive_Auto_Click
             LclzManager.LocalizeForm(this);
             LocalizeSpecialCases();
         }
+
         public void LoadSelectedLanguage()
         {
             if (cbbLanguages.SelectedItem == null)
@@ -1687,16 +1692,10 @@ namespace TFive_Auto_Click
             registerModeToolStripMenuItem.Text = LclzManager.TranslateMessage("RegisterMode", "Register Mode");
         }
 
+        #endregion Languaged Manager
 
+        #endregion About
 
-
-
-        #endregion
-
-        #endregion
-
-        #endregion
-
-      
+        #endregion Tab Control
     }
 }
