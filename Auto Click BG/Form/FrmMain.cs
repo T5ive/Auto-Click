@@ -277,7 +277,8 @@ namespace TFive_Auto_Click
                     radio_loop_time.Checked = bw.ReadBoolean();
                     _protectOn = bw.ReadBoolean();
                     _passLock = bw.ReadString();
-                    _numGrid = bw.ReadInt32();
+                    //_numGrid = bw.ReadInt32();
+                    _numGrid = GridProcess.RowCount;
                 }
 
                 //  FirstSaved = false;
@@ -634,7 +635,7 @@ namespace TFive_Auto_Click
         private void AddGridProcess(object processName, object targetTitle, object colorX, object colorY, object color, object clickX, object clickY, object click, object point, object mode)
         {
             GridProcess.Rows.Add(_numGrid, processName, targetTitle, colorX, colorY, color, clickX, clickY, click, point, mode);
-            _numGrid += 1;
+            _numGrid = GridProcess.Rows.Count;
         }
 
         private void ResetGrid()
@@ -703,9 +704,25 @@ namespace TFive_Auto_Click
 
         private void NumRow()
         {
-            foreach (DataGridViewRow row in GridProcess.Rows)
+            //foreach (DataGridViewRow row in GridProcess.Rows)
+            //{
+            //    row.HeaderCell.Value = $"{row.Index + 1}";
+            //}
+            try
             {
-                row.HeaderCell.Value = $"{row.Index + 1}";
+               var i = GridProcess.Rows.Count - 1;
+               var numRow = int.Parse(GridProcess.Rows[i].Cells[0].Value.ToString());
+               if (numRow != _numGrid)
+               {
+                   for (int j = 0; j <= GridProcess.Rows.Count - 1; j++)
+                   {
+                       GridProcess.Rows[j].Cells[0].Value = j;
+                   }
+               }
+            }
+            catch 
+            {
+               
             }
         }
 
@@ -713,7 +730,7 @@ namespace TFive_Auto_Click
         {
             var index = GridProcess.Rows.Add();
             GridProcess.Rows[index].Cells[0].Value = _numGrid;
-            _numGrid += 1;
+            _numGrid = GridProcess.Rows.Count;
             GridProcess.Rows[index].Cells[1].Value = Values.ProcessName;
             GridProcess.Rows[index].Cells[2].Value = Values.TitleName;
             GridProcess.Rows[index].Cells[3].Value = Values.CheckX;
