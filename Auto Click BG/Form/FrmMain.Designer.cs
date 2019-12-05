@@ -31,8 +31,8 @@ namespace TFive_Auto_Click
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            TFive.ControlRenderer controlRenderer2 = new TFive.ControlRenderer();
-            TFive.TFiveColorTable tFiveColorTable2 = new TFive.TFiveColorTable();
+            TFive.ControlRenderer controlRenderer3 = new TFive.ControlRenderer();
+            TFive.TFiveColorTable tFiveColorTable3 = new TFive.TFiveColorTable();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmMain));
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
@@ -953,9 +953,9 @@ namespace TFive_Auto_Click
             this.tFiveMenuStrip.Location = new System.Drawing.Point(0, 0);
             this.tFiveMenuStrip.MinimumSize = new System.Drawing.Size(0, 30);
             this.tFiveMenuStrip.Name = "tFiveMenuStrip";
-            controlRenderer2.ColorTable = tFiveColorTable2;
-            controlRenderer2.RoundedEdges = true;
-            this.tFiveMenuStrip.Renderer = controlRenderer2;
+            controlRenderer3.ColorTable = tFiveColorTable3;
+            controlRenderer3.RoundedEdges = true;
+            this.tFiveMenuStrip.Renderer = controlRenderer3;
             this.tFiveMenuStrip.Size = new System.Drawing.Size(691, 30);
             this.tFiveMenuStrip.TabIndex = 0;
             this.tFiveMenuStrip.Text = "tFive_MenuStrip1";
