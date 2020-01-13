@@ -1164,7 +1164,7 @@ namespace TFive_Auto_Click
                 {
                     #region Var
 
-                    var _Mode = int.Parse(GridProcess.Rows[i].Cells[10].Value.ToString());
+                    var botType = int.Parse(GridProcess.Rows[i].Cells[10].Value.ToString());
                     int skip;
                     var clickX = 0;
                     var clickY = 0;
@@ -1175,13 +1175,11 @@ namespace TFive_Auto_Click
                     var colorY1 = 0;
                     var color1 = 0;
 
-                    string manualLogs;
-
                     #endregion Var
 
                     #region Set Value For Click
 
-                    if (_Mode == 0 || _Mode == 1)
+                    if (botType == 0 || botType == 1)
                     {
                         #region AddiHandle
 
@@ -1258,19 +1256,21 @@ namespace TFive_Auto_Click
 
                     #region SetLogs
 
-                    manualLogs = GridProcess.Rows[i].Cells[1].Value.ToString();
+                    var manualLogs = GridProcess.Rows[i].Cells[1].Value.ToString();
 
                     #endregion SetLogs
 
-                    switch (_Mode)
+                    #region Bot
+
+                    switch (botType)
                     {
                         case 0:
 
                             #region Click Free
 
-                            if (_Mode == 0) // Point == 0
+                            if (botType == 0) // Point == 0
                             {
-                                if(clickTimes == 0) break;
+                                if (clickTimes == 0) break;
                                 GridProcess.Rows[i].Selected = true;
                                 Win32Bot.ClickToBG(iHandle, clickX, clickY, clickTimes);
                                 WriteOutput("Free Click : " + clickY + ", " + clickY, Color.Gold);
@@ -1417,7 +1417,7 @@ namespace TFive_Auto_Click
                             #region Goto
 
                             skip = int.Parse(GridProcess.Rows[i].Cells[5].Value.ToString());
-                            if (skip > GridProcess.Rows.Count - 1)
+                            if (skip > GridProcess.Rows.Count)
                             {
                                 break;
                             }
@@ -1432,7 +1432,7 @@ namespace TFive_Auto_Click
                             #region Goto True
 
                             skip = int.Parse(GridProcess.Rows[i].Cells[5].Value.ToString());
-                            if (skip > GridProcess.Rows.Count - 1)
+                            if (skip > GridProcess.Rows.Count)
                             {
                                 break;
                             }
@@ -1452,7 +1452,7 @@ namespace TFive_Auto_Click
                             #region Goto False
 
                             skip = int.Parse(GridProcess.Rows[i].Cells[5].Value.ToString());
-                            if (skip > GridProcess.Rows.Count - 1)
+                            if (skip > GridProcess.Rows.Count)
                             {
                                 break;
                             }
@@ -1475,6 +1475,9 @@ namespace TFive_Auto_Click
 
                             #endregion MessageBox
                     }
+
+                    #endregion
+
 
                     #region Delay
 
