@@ -1270,6 +1270,7 @@ namespace TFive_Auto_Click
 
                             if (_Mode == 0) // Point == 0
                             {
+                                if(clickTimes == 0) break;
                                 GridProcess.Rows[i].Selected = true;
                                 Win32Bot.ClickToBG(iHandle, clickX, clickY, clickTimes);
                                 WriteOutput("Free Click : " + clickY + ", " + clickY, Color.Gold);
@@ -1287,6 +1288,8 @@ namespace TFive_Auto_Click
                         case 1:
 
                             #region Click Color
+
+                            if (clickTimes == 0) break;
 
                             #region Color = 1
 
