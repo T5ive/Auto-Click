@@ -78,6 +78,12 @@ namespace TFive_Auto_Click
         private const int SW_HIDE = 0;
         private const int SW_SHOW = 1;
 
+        private const int WH_KEYBOARD_LL = 13;
+        private const int WM_KEYDOWN = 0x100;
+        private const int WM_KEYUP = 0x101;
+        private const int WM_SYSKEYDOWN = 0x104;
+        private const int WM_SYSKEYUP = 0x105;
+
         #endregion
         public static Size GetControlSize(IntPtr iHandle)
         {
@@ -179,15 +185,15 @@ namespace TFive_Auto_Click
             GetControlSize(iHandle);
             MoveWindow(iHandle, x, y, WinSizeWidth, WinSizeHeight, true);
         }
-        public static bool CheckProcess(string ProcessName)
+        public static bool CheckProcess(string processName)
         {
-            var StatusCheck = false;
-            var p = Process.GetProcessesByName(ProcessName);
+            var statusCheck = false;
+            var p = Process.GetProcessesByName(processName);
             if (p.Length > 0)
             {
-                StatusCheck = true;
+                statusCheck = true;
             }
-            return StatusCheck;
+            return statusCheck;
         }
         public static string GetWinTitle(IntPtr iHandle)
         {
@@ -195,24 +201,15 @@ namespace TFive_Auto_Click
             StringBuilder Buff = new StringBuilder(nChars);
             return GetWindowText(iHandle, Buff, nChars) > 0 ? Buff.ToString() : null;
         }
-        //public static void sendKeyBG(IntPtr iHandle)
-        //{
-        //    PostMessage(iHandle, MOUSEEVENTF_KEYDOWN, (int)Keys.Control, 0);
-        //    PostMessage(iHandle, MOUSEEVENTF_KEYDOWN, (int)Keys.A, 0);
-        //    PostMessage(iHandle, 256u, (int)Keys.Control, 0);
-        //}
-
-        public static void sendKeyBG(IntPtr iHandle, Keys key)
+        public static void SendKeyBG(IntPtr iHandle, Keys key, int delay)
         {
-            PostMessage(iHandle, MOUSEEVENTF_KEYDOWN, (int)key, 0);
-            PostMessage(iHandle, MOUSEEVENTF_KEYUP, (int)key, 0);
+            PostMessage(iHandle, WM_KEYDOWN, (int)key, 0);
+            AwaitSleep(delay);
+            PostMessage(iHandle, WM_KEYUP, (int)key, 0);
         }
         public static void OpenProgram(string path)
         {
             Process.Start(path);
         }
-
-
-
     }
 }

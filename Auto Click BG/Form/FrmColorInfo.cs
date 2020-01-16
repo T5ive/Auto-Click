@@ -161,7 +161,12 @@ namespace TFive_Auto_Click
                 txt_posiY.Text = PT.Y.ToString();
                 txt_color.Text = GetColor.GetColorString(int.Parse(txt_posiX.Text), int.Parse(txt_posiY.Text));
                 lb_status.Text = @"Status: "+ GetColor.GetColorFast(intPtr, PT.X, PT.Y, GetColor.StringColor(txt_color.Text), 4);
-
+                if (!GetColor.GetColorFast(intPtr, PT.X, PT.Y, GetColor.StringColor(txt_color.Text), 4))
+                {
+                    txt_posiX.ResetText();
+                    txt_posiY.ResetText();
+                    txt_color.ResetText();
+                }
                 panel_color.BackColor = FrmMagnify.magnifyingGlass1.PixelColor;
                 LocationMagnify();
             }
