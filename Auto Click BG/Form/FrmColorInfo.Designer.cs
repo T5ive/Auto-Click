@@ -34,6 +34,8 @@
             this.timer2 = new System.Windows.Forms.Timer(this.components);
             this.tm_mouse = new System.Windows.Forms.Timer(this.components);
             this.tFive_Theme1 = new TFive.TFiveTheme();
+            this.tFiveLabel1 = new TFive.TFiveLabel();
+            this.txtDelay = new TFive.TFiveTextBox();
             this.lb_status = new TFive.TFiveLabel();
             this.panel_color = new System.Windows.Forms.Panel();
             this.txt_class = new TFive.TFiveTextBox();
@@ -61,7 +63,6 @@
             this.pic_click = new System.Windows.Forms.PictureBox();
             this.tFive_TextBox1 = new TFive.TFiveTextBox();
             this.tFive_HeaderLabel1 = new TFive.TFiveHeaderLabel();
-            this.cb_delay = new TFive.TFiveCheckbox();
             this.tFive_Theme1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picTarget)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pic_click)).BeginInit();
@@ -85,7 +86,8 @@
             // 
             this.tFive_Theme1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
             this.tFive_Theme1.Border = true;
-            this.tFive_Theme1.Controls.Add(this.cb_delay);
+            this.tFive_Theme1.Controls.Add(this.tFiveLabel1);
+            this.tFive_Theme1.Controls.Add(this.txtDelay);
             this.tFive_Theme1.Controls.Add(this.lb_status);
             this.tFive_Theme1.Controls.Add(this.panel_color);
             this.tFive_Theme1.Controls.Add(this.txt_class);
@@ -119,11 +121,41 @@
             this.tFive_Theme1.Padding = new System.Windows.Forms.Padding(20, 56, 20, 16);
             this.tFive_Theme1.RoundCorners = false;
             this.tFive_Theme1.Sizable = false;
-            this.tFive_Theme1.Size = new System.Drawing.Size(349, 524);
+            this.tFive_Theme1.Size = new System.Drawing.Size(349, 550);
             this.tFive_Theme1.SmartBounds = true;
             this.tFive_Theme1.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.tFive_Theme1.TabIndex = 0;
             this.tFive_Theme1.Text = "Get Color";
+            // 
+            // tFiveLabel1
+            // 
+            this.tFiveLabel1.AutoSize = true;
+            this.tFiveLabel1.BackColor = System.Drawing.Color.Transparent;
+            this.tFiveLabel1.Font = new System.Drawing.Font("Segoe UI", 11F);
+            this.tFiveLabel1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(100)))), ((int)(((byte)(255)))));
+            this.tFiveLabel1.Location = new System.Drawing.Point(80, 460);
+            this.tFiveLabel1.Name = "tFiveLabel1";
+            this.tFiveLabel1.Size = new System.Drawing.Size(50, 20);
+            this.tFiveLabel1.TabIndex = 49;
+            this.tFiveLabel1.Text = "Delay:";
+            // 
+            // txtDelay
+            // 
+            this.txtDelay.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtDelay.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            this.txtDelay.Font = new System.Drawing.Font("Segoe UI", 11F);
+            this.txtDelay.Location = new System.Drawing.Point(137, 454);
+            this.txtDelay.MaxLength = 32767;
+            this.txtDelay.MinimumSize = new System.Drawing.Size(0, 31);
+            this.txtDelay.Multiline = false;
+            this.txtDelay.Name = "txtDelay";
+            this.txtDelay.ReadOnly = false;
+            this.txtDelay.Size = new System.Drawing.Size(75, 31);
+            this.txtDelay.Style = TFive.TFiveTextBox._Num.NumberOnly;
+            this.txtDelay.TabIndex = 48;
+            this.txtDelay.Text = "100";
+            this.txtDelay.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtDelay.UseSystemPasswordChar = false;
             // 
             // lb_status
             // 
@@ -281,7 +313,7 @@
             this.bt_cancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.bt_cancel.Font = new System.Drawing.Font("Segoe UI", 11F);
             this.bt_cancel.Image = null;
-            this.bt_cancel.Location = new System.Drawing.Point(251, 469);
+            this.bt_cancel.Location = new System.Drawing.Point(252, 500);
             this.bt_cancel.Name = "bt_cancel";
             this.bt_cancel.NoRounding = false;
             this.bt_cancel.Size = new System.Drawing.Size(75, 31);
@@ -294,7 +326,7 @@
             this.bt_ok.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.bt_ok.Font = new System.Drawing.Font("Segoe UI", 11F);
             this.bt_ok.Image = null;
-            this.bt_ok.Location = new System.Drawing.Point(170, 469);
+            this.bt_ok.Location = new System.Drawing.Point(171, 500);
             this.bt_ok.Name = "bt_ok";
             this.bt_ok.NoRounding = false;
             this.bt_ok.Size = new System.Drawing.Size(75, 31);
@@ -491,27 +523,12 @@
             this.tFive_HeaderLabel1.TabIndex = 31;
             this.tFive_HeaderLabel1.Text = "Settings";
             // 
-            // cb_delay
-            // 
-            this.cb_delay.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.cb_delay.CheckedState = false;
-            this.cb_delay.Font = new System.Drawing.Font("Segoe UI", 11F);
-            this.cb_delay.Image = null;
-            this.cb_delay.Location = new System.Drawing.Point(84, 454);
-            this.cb_delay.MaximumSize = new System.Drawing.Size(600, 16);
-            this.cb_delay.MinimumSize = new System.Drawing.Size(16, 16);
-            this.cb_delay.Name = "cb_delay";
-            this.cb_delay.NoRounding = false;
-            this.cb_delay.Size = new System.Drawing.Size(64, 16);
-            this.cb_delay.TabIndex = 47;
-            this.cb_delay.Text = "Delay";
-            // 
             // FrmColorInfo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ClientSize = new System.Drawing.Size(349, 524);
+            this.ClientSize = new System.Drawing.Size(349, 550);
             this.Controls.Add(this.tFive_Theme1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.MinimumSize = new System.Drawing.Size(261, 65);
@@ -565,6 +582,7 @@
         private System.Windows.Forms.Panel panel_color;
         private TFive.TFiveTextBox tFive_TextBox1;
         private TFive.TFiveLabel lb_status;
-        private TFive.TFiveCheckbox cb_delay;
+        private TFive.TFiveLabel tFiveLabel1;
+        private TFive.TFiveTextBox txtDelay;
     }
 }

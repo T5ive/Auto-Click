@@ -153,6 +153,7 @@ namespace TFive_Auto_Click
         public bool FirstSaved;
         private bool _start;
         private int _numGrid;
+        
 
         #endregion Var
 
@@ -250,7 +251,8 @@ namespace TFive_Auto_Click
                     var m = bw.ReadInt32(); //row
                     //Values.NumListMax = (n - 9) / 3; // 9,12,24
                     //Values.NumListMax = (n - 10) / 3;
-                    Values.NumListMax = (n - 11) / 3;
+                    //Values.NumListMax = (n - 11) / 3;
+                    Values.NumListMax = (n - 12) / 3;
                     for (var i = 0; i < m; ++i)
                     {
                         GridProcess.Rows.Add();
@@ -279,6 +281,7 @@ namespace TFive_Auto_Click
                     _passLock = bw.ReadString();
                     //_numGrid = bw.ReadInt32();
                     _numGrid = GridProcess.RowCount;
+                    
                 }
 
                 //  FirstSaved = false;
@@ -565,10 +568,6 @@ namespace TFive_Auto_Click
                         AddGridColumns(1);
                         Values.CloseFrom = false;
                         ChangeValue();
-                        if (Values.Delay)
-                        {
-                            AddScript(ModeScript.Sleep);
-                        }
                     }
                     break;
 
@@ -740,9 +739,9 @@ namespace TFive_Auto_Click
             GridProcess.Rows[index].Cells[7].Value = Values.ClickY;
             GridProcess.Rows[index].Cells[8].Value = Values.ClickTimes;
             GridProcess.Rows[index].Cells[9].Value = Values.NumListColor;
-
-            GridProcess.Rows[index].Cells[10].Value = Values.Mode; // New
-
+            
+            GridProcess.Rows[index].Cells[10].Value = Values.Delay;
+            GridProcess.Rows[index].Cells[11].Value = Values.Mode; // New
             //GridProcess.Rows[index].Cells[0].Value = Values.ProcessName;
             //GridProcess.Rows[index].Cells[1].Value = Values.TitleName;
             //GridProcess.Rows[index].Cells[2].Value = Values.CheckX;
@@ -768,8 +767,8 @@ namespace TFive_Auto_Click
 
                 //GridProcess.Rows[index].Cells[i + 8].Value = array[k];
                 //GridProcess.Rows[index].Cells[i + 9].Value = array[k];
-                GridProcess.Rows[index].Cells[i + 10].Value = array[k];
-
+                //GridProcess.Rows[index].Cells[i + 10].Value = array[k];
+                GridProcess.Rows[index].Cells[i + 11].Value = array[k];
                 k++;
                 if (k > 2)
                 {
@@ -921,7 +920,7 @@ namespace TFive_Auto_Click
                 }
                 catch
                 {
-                    throw;
+                   
                 }
             }
         }
@@ -1094,9 +1093,9 @@ namespace TFive_Auto_Click
 
                 CheckProject();
             }
-            catch (Exception)
+            catch
             {
-                throw;
+               
             }
         }
 
@@ -1164,11 +1163,12 @@ namespace TFive_Auto_Click
                 {
                     #region Var
 
-                    var botType = int.Parse(GridProcess.Rows[i].Cells[10].Value.ToString());
+                    var botType = int.Parse(GridProcess.Rows[i].Cells[11].Value.ToString());
                     int skip;
                     var clickX = 0;
                     var clickY = 0;
                     var clickTimes = 0;
+                    var delay = 0;
                     var point = 0;
 
                     var colorX1 = 0;
@@ -1204,19 +1204,21 @@ namespace TFive_Auto_Click
 
                         #endregion AddiHandle
 
-                        #region Set ClickXY, Times
+                        #region Set ClickXY, Times, Delay
 
                         try
                         {
                             clickX = int.Parse(GridProcess.Rows[i].Cells[6].Value.ToString());
                             clickY = int.Parse(GridProcess.Rows[i].Cells[7].Value.ToString());
                             clickTimes = int.Parse(GridProcess.Rows[i].Cells[8].Value.ToString());
+                            delay = int.Parse(GridProcess.Rows[i].Cells[10].Value.ToString());
                         }
                         catch (Exception)
                         {
                             clickX = 0;
                             clickY = 0;
                             clickTimes = 0;
+                            delay = 0;
                         }
 
                         #endregion Set ClickXY, Times
@@ -1274,10 +1276,13 @@ namespace TFive_Auto_Click
                                 GridProcess.Rows[i].Selected = true;
                                 Win32Bot.ClickToBG(iHandle, clickX, clickY, clickTimes);
                                 WriteOutput("Free Click : " + clickY + ", " + clickY, Color.Gold);
-
                                 if (cb_logs.CheckedState)
                                 {
                                     WriteOutput(manualLogs, Color.Gold);
+                                }
+                                if (delay > 0)
+                                {
+                                    Win32Bot.AwaitSleep(delay);
                                 }
                             }
 
@@ -1374,6 +1379,10 @@ namespace TFive_Auto_Click
                                         WriteOutput(manualLogs, Color.Goldenrod);
                                     }
                                     statusTF = true;
+                                    if (delay > 0)
+                                    {
+                                        Win32Bot.AwaitSleep(delay);
+                                    }
                                 }
                                 else
                                 {
@@ -1477,8 +1486,7 @@ namespace TFive_Auto_Click
                     }
 
                     #endregion
-
-
+                    
                     #region Delay
 
                     try

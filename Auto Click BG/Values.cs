@@ -11,7 +11,7 @@ namespace TFive_Auto_Click
         public static string TitleName;
         public static string Color;
         public static bool CloseFrom = false;
-        public static bool Delay = false;
+
 
         public static int Mode;
         public static int NumListMax = 0;
@@ -20,6 +20,7 @@ namespace TFive_Auto_Click
         public static int ClickTimes = 0;
         public static string[] ListColorString;
         public static int sleep;
+        public static int Delay;
 
         public static string PathFile;
     }

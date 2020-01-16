@@ -31,8 +31,8 @@ namespace TFive_Auto_Click
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            TFive.ControlRenderer controlRenderer3 = new TFive.ControlRenderer();
-            TFive.TFiveColorTable tFiveColorTable3 = new TFive.TFiveColorTable();
+            TFive.ControlRenderer controlRenderer5 = new TFive.ControlRenderer();
+            TFive.TFiveColorTable tFiveColorTable5 = new TFive.TFiveColorTable();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmMain));
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
@@ -44,6 +44,18 @@ namespace TFive_Auto_Click
             this.txt_creator = new TFive_Theme.TFiveMarquee();
             this.gbAutoClick = new TFive.TFiveGroupBox();
             this.GridProcess = new System.Windows.Forms.DataGridView();
+            this.No = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.process = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.process_name = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.posi_x = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.posi_y = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.check_color = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.click_x = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.click_y = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.timesClick = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NumList = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Delay = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.mode = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabStart = new System.Windows.Forms.TabPage();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel9 = new System.Windows.Forms.Panel();
@@ -117,17 +129,6 @@ namespace TFive_Auto_Click
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.registerModeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tm_checkHK = new System.Windows.Forms.Timer(this.components);
-            this.No = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.process = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.process_name = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.posi_x = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.posi_y = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.check_color = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.click_x = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.click_y = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.timesClick = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.NumList = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.mode = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tFiveTheme.SuspendLayout();
             this.TFiveTabControl.SuspendLayout();
             this.tabProj.SuspendLayout();
@@ -278,6 +279,7 @@ namespace TFive_Auto_Click
             this.click_y,
             this.timesClick,
             this.NumList,
+            this.Delay,
             this.mode});
             this.GridProcess.Dock = System.Windows.Forms.DockStyle.Fill;
             this.GridProcess.Location = new System.Drawing.Point(10, 30);
@@ -293,6 +295,111 @@ namespace TFive_Auto_Click
             this.GridProcess.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.GridProcess_CellValueChanged);
             this.GridProcess.SortCompare += new System.Windows.Forms.DataGridViewSortCompareEventHandler(this.GridProcess_SortCompare);
             this.GridProcess.KeyDown += new System.Windows.Forms.KeyEventHandler(this.GridProcess_KeyDown);
+            // 
+            // No
+            // 
+            this.No.HeaderText = "No.";
+            this.No.MinimumWidth = 30;
+            this.No.Name = "No";
+            this.No.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.No.Width = 40;
+            // 
+            // process
+            // 
+            this.process.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.process.HeaderText = "Processes Name";
+            this.process.Name = "process";
+            this.process.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.process.Width = 122;
+            // 
+            // process_name
+            // 
+            this.process_name.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.process_name.HeaderText = "Target Title";
+            this.process_name.Name = "process_name";
+            this.process_name.Width = 108;
+            // 
+            // posi_x
+            // 
+            this.posi_x.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.posi_x.HeaderText = "Color X";
+            this.posi_x.Name = "posi_x";
+            this.posi_x.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.posi_x.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.posi_x.Width = 64;
+            // 
+            // posi_y
+            // 
+            this.posi_y.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.posi_y.HeaderText = "Color Y";
+            this.posi_y.Name = "posi_y";
+            this.posi_y.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.posi_y.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.posi_y.Width = 63;
+            // 
+            // check_color
+            // 
+            this.check_color.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.check_color.HeaderText = "Color";
+            this.check_color.Name = "check_color";
+            this.check_color.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.check_color.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.check_color.Width = 51;
+            // 
+            // click_x
+            // 
+            this.click_x.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.click_x.HeaderText = "Click X";
+            this.click_x.Name = "click_x";
+            this.click_x.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.click_x.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.click_x.Width = 59;
+            // 
+            // click_y
+            // 
+            this.click_y.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.click_y.HeaderText = "Click Y";
+            this.click_y.Name = "click_y";
+            this.click_y.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.click_y.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.click_y.Width = 58;
+            // 
+            // timesClick
+            // 
+            this.timesClick.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.timesClick.HeaderText = "Click";
+            this.timesClick.Name = "timesClick";
+            this.timesClick.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.timesClick.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.timesClick.Width = 46;
+            // 
+            // NumList
+            // 
+            this.NumList.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.NumList.HeaderText = "Point";
+            this.NumList.Name = "NumList";
+            this.NumList.ReadOnly = true;
+            this.NumList.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.NumList.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.NumList.Width = 48;
+            // 
+            // Delay
+            // 
+            this.Delay.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Delay.HeaderText = "Delay";
+            this.Delay.Name = "Delay";
+            this.Delay.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Delay.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.Delay.Width = 53;
+            // 
+            // mode
+            // 
+            this.mode.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.mode.HeaderText = "Mode";
+            this.mode.Name = "mode";
+            this.mode.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.mode.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.mode.Width = 54;
             // 
             // tabStart
             // 
@@ -471,6 +578,8 @@ namespace TFive_Auto_Click
             // 
             this.logs_box.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
             this.logs_box.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.logs_box.Cursor = System.Windows.Forms.Cursors.Arrow;
+            this.logs_box.DetectUrls = false;
             this.logs_box.Dock = System.Windows.Forms.DockStyle.Fill;
             this.logs_box.Location = new System.Drawing.Point(2, 25);
             this.logs_box.Name = "logs_box";
@@ -953,9 +1062,9 @@ namespace TFive_Auto_Click
             this.tFiveMenuStrip.Location = new System.Drawing.Point(0, 0);
             this.tFiveMenuStrip.MinimumSize = new System.Drawing.Size(0, 30);
             this.tFiveMenuStrip.Name = "tFiveMenuStrip";
-            controlRenderer3.ColorTable = tFiveColorTable3;
-            controlRenderer3.RoundedEdges = true;
-            this.tFiveMenuStrip.Renderer = controlRenderer3;
+            controlRenderer5.ColorTable = tFiveColorTable5;
+            controlRenderer5.RoundedEdges = true;
+            this.tFiveMenuStrip.Renderer = controlRenderer5;
             this.tFiveMenuStrip.Size = new System.Drawing.Size(691, 30);
             this.tFiveMenuStrip.TabIndex = 0;
             this.tFiveMenuStrip.Text = "tFive_MenuStrip1";
@@ -1195,102 +1304,6 @@ namespace TFive_Auto_Click
             this.tm_checkHK.Enabled = true;
             this.tm_checkHK.Tick += new System.EventHandler(this.tm_checkhtk_Tick);
             // 
-            // No
-            // 
-            this.No.HeaderText = "No.";
-            this.No.MinimumWidth = 30;
-            this.No.Name = "No";
-            this.No.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.No.Width = 40;
-            // 
-            // process
-            // 
-            this.process.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.process.HeaderText = "Processes Name";
-            this.process.Name = "process";
-            this.process.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.process.Width = 122;
-            // 
-            // process_name
-            // 
-            this.process_name.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.process_name.HeaderText = "Target Title";
-            this.process_name.Name = "process_name";
-            this.process_name.Width = 108;
-            // 
-            // posi_x
-            // 
-            this.posi_x.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.posi_x.HeaderText = "Color X";
-            this.posi_x.Name = "posi_x";
-            this.posi_x.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.posi_x.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.posi_x.Width = 64;
-            // 
-            // posi_y
-            // 
-            this.posi_y.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.posi_y.HeaderText = "Color Y";
-            this.posi_y.Name = "posi_y";
-            this.posi_y.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.posi_y.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.posi_y.Width = 63;
-            // 
-            // check_color
-            // 
-            this.check_color.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.check_color.HeaderText = "Color";
-            this.check_color.Name = "check_color";
-            this.check_color.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.check_color.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.check_color.Width = 51;
-            // 
-            // click_x
-            // 
-            this.click_x.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.click_x.HeaderText = "Click X";
-            this.click_x.Name = "click_x";
-            this.click_x.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.click_x.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.click_x.Width = 59;
-            // 
-            // click_y
-            // 
-            this.click_y.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.click_y.HeaderText = "Click Y";
-            this.click_y.Name = "click_y";
-            this.click_y.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.click_y.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.click_y.Width = 58;
-            // 
-            // timesClick
-            // 
-            this.timesClick.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.timesClick.HeaderText = "Click";
-            this.timesClick.Name = "timesClick";
-            this.timesClick.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.timesClick.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.timesClick.Width = 46;
-            // 
-            // NumList
-            // 
-            this.NumList.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.NumList.HeaderText = "Point";
-            this.NumList.Name = "NumList";
-            this.NumList.ReadOnly = true;
-            this.NumList.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.NumList.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.NumList.Width = 48;
-            // 
-            // mode
-            // 
-            this.mode.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.mode.HeaderText = "Mode";
-            this.mode.Name = "mode";
-            this.mode.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.mode.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.mode.Width = 54;
-            // 
             // FrmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1436,6 +1449,7 @@ namespace TFive_Auto_Click
         private DataGridViewTextBoxColumn click_y;
         private DataGridViewTextBoxColumn timesClick;
         private DataGridViewTextBoxColumn NumList;
+        private DataGridViewTextBoxColumn Delay;
         private DataGridViewTextBoxColumn mode;
     }
 }

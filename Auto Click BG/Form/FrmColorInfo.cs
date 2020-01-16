@@ -313,10 +313,7 @@ namespace TFive_Auto_Click
             Values.ClickY = int.Parse(txt_clickY.Text);
             Values.TitleName = txt_title.Text+" | "+txt_class.Text;
             Values.ClickTimes = (int) num_click.Value;
-            if (cb_delay.CheckedState)
-            {
-                Values.Delay = true;
-            }
+            Values.Delay = int.Parse(txtDelay.Text);
             Values.CloseFrom = true;
             Close();
         }
