@@ -12,6 +12,8 @@ using TFive_Class;
 namespace TFive_Auto_Click
 {
     [Obfuscation(Feature = "Apply to member * when method or constructor: virtualization", Exclude = false)]
+    
+    //todo Right, Left Click
     public partial class FrmMain : Form
     {
         public FrmMain()
@@ -1274,7 +1276,7 @@ namespace TFive_Auto_Click
                             {
                                 if (clickTimes == 0) break;
                                 GridProcess.Rows[i].Selected = true;
-                                Win32Bot.ClickToBG(iHandle, clickX, clickY, clickTimes);
+                                Win32Bot.ClickToBg(iHandle, clickX, clickY, clickTimes);
                                 WriteOutput("Free Click : " + clickY + ", " + clickY, Color.Gold);
                                 if (cb_logs.CheckedState)
                                 {
@@ -1303,7 +1305,7 @@ namespace TFive_Auto_Click
                                 if (GetColor.GetColorFast(iHandle, colorX1, colorY1, color1, 4))
                                 {
                                     // GridProcess.Rows[i].Selected = true;
-                                    Win32Bot.ClickToBG(iHandle, clickX, clickY, clickTimes);
+                                    Win32Bot.ClickToBg(iHandle, clickX, clickY, clickTimes);
                                     WriteOutput("Color Click : " + clickY + ", " + clickY, Color.Goldenrod);
                                     if (cb_logs.CheckedState)
                                     {
@@ -1333,9 +1335,9 @@ namespace TFive_Auto_Click
                                 for (var j = 0; j < point - 1; j++)
                                 {
                                     var numInt = j * 3;
-                                    var numX = 10 + numInt;
-                                    var numY = 11 + numInt;
-                                    var numColorX = 12 + numInt;
+                                    var numX = 11 + numInt;
+                                    var numY = 12 + numInt;
+                                    var numColorX = 13 + numInt;
 
                                     #region SetXY Color
 
@@ -1372,7 +1374,7 @@ namespace TFive_Auto_Click
                                 if (countTrue == point)
                                 {
                                     GridProcess.Rows[i].Selected = true;
-                                    Win32Bot.ClickToBG(iHandle, clickX, clickY, clickTimes);
+                                    Win32Bot.ClickToBg(iHandle, clickX, clickY, clickTimes);
                                     WriteOutput("Color Click : " + clickY + ", " + clickY, Color.Goldenrod);
                                     if (cb_logs.CheckedState)
                                     {

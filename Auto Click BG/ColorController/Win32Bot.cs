@@ -149,14 +149,18 @@ namespace TFive_Auto_Click
         }
 
 
-        public static void ClickToBG(IntPtr iHandle, int x, int y, int clickCount = 1)
+        public static void ClickToBg(IntPtr iHandle, int x, int y, int clickCount = 1)
         {
-            SendMessage(iHandle, MOUSEEVENTF_LBUTTONDOWN, 0x00000001, MakeLParam(x, y));
-            SendMessage(iHandle, MOUSEEVENTF_LBUTTONUP, 0x00000000, MakeLParam(x, y));
+            for (var i = 0; i < clickCount; i++)
+            {
+                SendMessage(iHandle, MOUSEEVENTF_LBUTTONDOWN, 0x00000001, MakeLParam(x, y));
+                SendMessage(iHandle, MOUSEEVENTF_LBUTTONUP, 0x00000000, MakeLParam(x, y));
+            }
+            
         }
         public static void ClickHold(IntPtr iHandle, int x, int y, int slp)
         {
-            POINT p = new POINT {x = Convert.ToInt16(x), y = Convert.ToInt16(y)};
+            var p = new POINT {x = Convert.ToInt16(x), y = Convert.ToInt16(y)};
             ClientToScreen(iHandle, ref p);
             SetCursorPos(p.x, p.y);
             mouse_event(MOUSEEVENTF_LEFTDOWN, p.x, p.y, 0, 0);
