@@ -1350,8 +1350,7 @@ namespace TFive_Auto_Click
                                     {
                                         newXColor = int.Parse(GridProcess.Rows[i].Cells[numX].Value.ToString());
                                         newYColor = int.Parse(GridProcess.Rows[i].Cells[numY].Value.ToString());
-                                        newColor = GetColor.StringColor(GridProcess.Rows[i].Cells[numColorX].Value
-                                            .ToString());
+                                        newColor = GetColor.StringColor(GridProcess.Rows[i].Cells[numColorX].Value.ToString());
                                     }
                                     catch (Exception)
                                     {
@@ -1369,7 +1368,7 @@ namespace TFive_Auto_Click
                                     else
                                     {
                                         countTrue = 0;
-                                        if (cb_logs.CheckedState)
+                                        if (cb_dev.CheckedState)
                                         {
                                             WriteOutput($"Not Found {newColor}", Color.Red);
                                         }
