@@ -1335,39 +1335,43 @@ namespace TFive_Auto_Click
                                 for (var j = 0; j < point - 1; j++)
                                 {
                                     var numInt = j * 3;
-                                    var numX = 11 + numInt;
-                                    var numY = 12 + numInt;
-                                    var numColorX = 13 + numInt;
+                                    var numX = 12 + numInt;
+                                    var numY = 13 + numInt;
+                                    var numColorX = 14 + numInt;
 
                                     #region SetXY Color
 
-                                    int colorX_X;
-                                    int colorY_X;
-                                    int color_X;
+                                    int newXColor;
+                                    int newYColor;
+                                    int newColor;
 
                                     try
                                     {
-                                        colorX_X = int.Parse(GridProcess.Rows[i].Cells[numX].Value.ToString());
-                                        colorY_X = int.Parse(GridProcess.Rows[i].Cells[numY].Value.ToString());
-                                        color_X = GetColor.StringColor(GridProcess.Rows[i].Cells[numColorX].Value
+                                        newXColor = int.Parse(GridProcess.Rows[i].Cells[numX].Value.ToString());
+                                        newYColor = int.Parse(GridProcess.Rows[i].Cells[numY].Value.ToString());
+                                        newColor = GetColor.StringColor(GridProcess.Rows[i].Cells[numColorX].Value
                                             .ToString());
                                     }
                                     catch (Exception)
                                     {
-                                        colorX_X = 0;
-                                        colorY_X = 0;
-                                        color_X = 0;
+                                        newXColor = 0;
+                                        newYColor = 0;
+                                        newColor = 0;
                                     }
 
                                     #endregion SetXY Color
 
-                                    if (GetColor.GetColorFast(iHandle, colorX_X, colorY_X, color_X, 4))
+                                    if (GetColor.GetColorFast(iHandle, newXColor, newYColor, newColor, 4))
                                     {
                                         countTrue += 1;
                                     }
                                     else
                                     {
                                         countTrue = 0;
+                                        if (cb_logs.CheckedState)
+                                        {
+                                            WriteOutput($"Not Found {newColor}", Color.Red);
+                                        }
                                     }
                                 }
 
