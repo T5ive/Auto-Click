@@ -261,7 +261,7 @@ namespace TFive_Auto_Click
                         for (var j = 0; j < n; ++j)
                         {
                             //if (j == 9)
-                            if (j == 10)
+                            if (j == 12)
                             {
                                 AddGridColumns(2);
                             }
@@ -474,7 +474,7 @@ namespace TFive_Auto_Click
 
         #region Add Script
 
-        private int _readOnly = 11;
+        private int _readOnly = 12;
 
         private enum ModeScript
         {
@@ -652,6 +652,7 @@ namespace TFive_Auto_Click
             Values.NumListCurrent = 1;
             Values.NumListColor = 0;
 
+            _readOnly = 12;
             radio_loopNonStop.Checked = true;
             txt_numDelay.Text = @"0";
             txt_delay.Text = @"10";
@@ -989,9 +990,9 @@ namespace TFive_Auto_Click
             {
                 GridProcess.Sort(GridProcess.Columns[0], ListSortDirection.Ascending);
             }
-            catch (Exception)
+            catch
             {
-                throw;
+               
             }
 
             //}
