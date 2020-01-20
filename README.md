@@ -1,3 +1,4 @@
+[![](http://img.youtube.com/vi/bXMK_A6G1j0/0.jpg)](http://www.youtube.com/watch?v=bXMK_A6G1j0 "")
 # Description
 TFive Auto Clicker is an open-source (GPLv3) Auto Clicker written in C#.
 
