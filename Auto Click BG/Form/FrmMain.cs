@@ -14,7 +14,7 @@ namespace TFive_Auto_Click
 {
     [Obfuscation(Feature = "Apply to member * when method or constructor: virtualization", Exclude = false)]
     
-    //todo Right, Left Click
+    //todo Right, Left Click -> type 11(free), 12(color)
     public partial class FrmMain : Form
     {
         public FrmMain()
