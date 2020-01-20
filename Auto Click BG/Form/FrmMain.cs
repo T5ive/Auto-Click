@@ -1362,7 +1362,7 @@ namespace TFive_Auto_Click
                             break;
 
                         #endregion Sleep
-
+                            
                         case 4:
 
                             #region Goto

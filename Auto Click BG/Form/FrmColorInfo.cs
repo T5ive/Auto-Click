@@ -112,15 +112,15 @@ namespace TFive_Auto_Click
 
         #region Windows Info
         
-        readonly FrmMagnify FrmMagnify = new FrmMagnify();
-        readonly GetAppName getApp = new GetAppName();
+        readonly FrmMagnify _frmMagnify = new FrmMagnify();
+        readonly GetAppName _getApp = new GetAppName();
 
         #region Get Posision Color
         private void picTarget_MouseDown(object sender, MouseEventArgs e)
         {
             picTarget.Image = bitmapFind2;
             picTarget.Cursor = newCursor;
-            FrmMagnify.Show();
+            _frmMagnify.Show();
             timer1.Start();
             tm_mouse.Start();
         }
@@ -129,7 +129,7 @@ namespace TFive_Auto_Click
         {
             picTarget.Cursor = Cursors.Default;
             picTarget.Image = bitmapFind;
-            FrmMagnify.Hide();
+            _frmMagnify.Hide();
             timer1.Stop();
             tm_mouse.Stop();
         }
@@ -155,24 +155,43 @@ namespace TFive_Auto_Click
                 GetAppName.CLASS = txt_class.Text;
 
 
-                getApp.AppName();
+                _getApp.AppName();
                 var intPtr = GetAppName.appName;
                 txt_posiX.Text = PT.X.ToString();
                 txt_posiY.Text = PT.Y.ToString();
                 txt_color.Text = GetColor.GetColorString(int.Parse(txt_posiX.Text), int.Parse(txt_posiY.Text));
                 lb_status.Text = @"Status: "+ GetColor.GetColorFast(intPtr, PT.X, PT.Y, GetColor.StringColor(txt_color.Text), 4);
+                
                 if (!GetColor.GetColorFast(intPtr, PT.X, PT.Y, GetColor.StringColor(txt_color.Text), 4))
                 {
-                    txt_posiX.ResetText();
-                    txt_posiY.ResetText();
-                    txt_color.ResetText();
+                    ResetValues(false);
+                    
                 }
-                panel_color.BackColor = FrmMagnify.magnifyingGlass1.PixelColor;
+
+                if (txt_title.Text == @"Get Color")
+                {
+                    ResetValues(true);
+                }
+
+                panel_color.BackColor = _frmMagnify.magnifyingGlass1.PixelColor;
                 LocationMagnify();
             }
             catch
             {
                 // ignored
+            }
+        }
+
+        private void ResetValues(bool mode)
+        {
+            txt_posiX.ResetText();
+            txt_posiY.ResetText();
+            txt_color.ResetText();
+            if (mode)
+            {
+                txt_title.ResetText();
+                txt_class.ResetText();
+                lb_status.Text = @"Status: False";
             }
         }
        
@@ -184,7 +203,7 @@ namespace TFive_Auto_Click
         {
             pic_click.Image = bitmapFind2;
             pic_click.Cursor = newCursor;
-            FrmMagnify.Show();
+            _frmMagnify.Show();
             timer2.Start();
             tm_mouse.Start();
         }
@@ -193,7 +212,7 @@ namespace TFive_Auto_Click
         {
             pic_click.Cursor = Cursors.Default;
             pic_click.Image = bitmapFind;
-            FrmMagnify.Hide();
+            _frmMagnify.Hide();
             timer2.Stop();
             tm_mouse.Stop();
         }
@@ -219,7 +238,7 @@ namespace TFive_Auto_Click
                 GetAppName.APP = txt_title.Text;
                 txt_class.Text = Win32.Win32.GetClassName(mainWnd);
                 GetAppName.CLASS = txt_class.Text;
-                getApp.AppName();
+                _getApp.AppName();
                 txt_clickX.Text = PT.X.ToString();
                 txt_clickY.Text = PT.Y.ToString();
                 
@@ -254,7 +273,7 @@ namespace TFive_Auto_Click
                 locationY -= 30 + 167;
             }
 
-            FrmMagnify.Location = new Point(pt.X + locationX, pt.Y + locationY);
+            _frmMagnify.Location = new Point(pt.X + locationX, pt.Y + locationY);
         }
 
         #endregion
