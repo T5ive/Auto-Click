@@ -249,18 +249,15 @@ namespace TFive_Auto_Click
                 ResetGrid();
                 using (var bw = new BinaryReader(File.Open(file, FileMode.Open)))
                 {
-                    var n = bw.ReadInt32(); //column
-                    var m = bw.ReadInt32(); //row
-                    //Values.NumListMax = (n - 9) / 3; // 9,12,24
-                    //Values.NumListMax = (n - 10) / 3;
-                    //Values.NumListMax = (n - 11) / 3;
-                    Values.NumListMax = (n - _numColumn) / 3;
-                    for (var i = 0; i < m; ++i)
+                    var column = bw.ReadInt32();
+                    var row = bw.ReadInt32();
+                    Values.NumListMax = (column - _numColumn) / 3;
+                    for (var i = 0; i < row; ++i)
                     {
                         GridProcess.Rows.Add();
-                        for (var j = 0; j < n; ++j)
+                        for (var j = 0; j < column; ++j)
                         {
-                            //if (j == 9)
+
                             if (j == _numColumn)
                             {
                                 AddGridColumns(2);
@@ -281,7 +278,6 @@ namespace TFive_Auto_Click
                     radio_loop_time.Checked = bw.ReadBoolean();
                     _protectOn = bw.ReadBoolean();
                     _passLock = bw.ReadString();
-                    //_numGrid = bw.ReadInt32();
                     _numGrid = GridProcess.RowCount;
                     
                 }
@@ -327,7 +323,7 @@ namespace TFive_Auto_Click
                 {
                     return false;
                 }
-                file = _fileName; //File.Exists(_fileName).ToString();
+                file = _fileName;
                 goto skipSave;
             }
             var path = AppDomain.CurrentDomain.BaseDirectory + "scripts";
@@ -371,9 +367,6 @@ namespace TFive_Auto_Click
                 }
 
                 _fileName = file;
-                //FileName = saveFileDialog1.FileName;
-                //saveFileDialog1.FileName = FileName;
-
                 _modified = false;
                 CheckProject();
                 // FirstSaved = true;
@@ -496,62 +489,6 @@ namespace TFive_Auto_Click
         //private void AddScript(int _Mode)
         private void AddScript(ModeScript script)
         {
-            #region Old
-
-            //switch (_Mode)
-            //{
-            //    case 1: // 1 Click Point - 0 Click Free
-            //        Visible = false;
-            //        var getColor = new FrmColorInfo();
-            //        getColor.ShowDialog();
-            //        Visible = true;
-            //        if (Values.CloseFrom)
-            //        {
-            //            AddGridColumns(1);
-            //            Values.CloseFrom = false;
-            //            ChangeValue();
-            //        }
-            //        break;
-
-            //    case 2: // Sleep
-            //        Visible = false;
-            //        var frm_Sleep = new FrmSleep();
-            //        frm_Sleep.ShowDialog();
-            //        Visible = true;
-            //        if (Values.CloseFrom)
-            //        {
-            //            addGridProcess("Sleep", null, null, null, Values.sleep, null, null, 0, null, 2);
-            //            Values.CloseFrom = false;
-            //            ChangeValue();
-            //        }
-            //        break;
-            //    case 3: // Comment
-            //        addGridProcess(null, null, null, null, null, null, null, 0, null, 3);
-            //        ChangeValue();
-            //        break;
-
-            //    case 4: // Skip
-            //        addGridProcess("skip", null, null, null, 1, null, null, null, null, 4);
-            //        ChangeValue();
-            //        break;
-
-            //    case 5: // Skip True
-            //        addGridProcess("skip True", null, null, null, 1, null, null, null, null, 5);
-            //        ChangeValue();
-            //        break;
-
-            //    case 6: // Skip False
-            //        addGridProcess("skip False", null, null, null, 1, null, null, null, null, 6);
-            //        ChangeValue();
-            //        break;
-
-            //    case 7: // Message Box
-            //        addGridProcess("Message Box", "Text here", null, null, 1, null, null, null, null, 7);
-            //        ChangeValue();
-            //        break;
-            //}
-
-            #endregion Old
 
             switch (script)
             {
@@ -1146,7 +1083,7 @@ namespace TFive_Auto_Click
             SetupBots(false);
         }
 
-        private void GetiHandle()
+        private void GetIHandle()
         {
             _getApp.AppName();
             iHandle = GetAppName.appName;
@@ -1201,7 +1138,7 @@ namespace TFive_Auto_Click
                                 .Split(new[] { " | " }, StringSplitOptions.None);
                             GetAppName.APP = split[0];
                             GetAppName.CLASS = split[1];
-                            GetiHandle();
+                            GetIHandle();
                         }
 
                         #endregion AddiHandle
@@ -1614,7 +1551,7 @@ namespace TFive_Auto_Click
                     //  DefaultRect = new Rectangle(Screen.PrimaryScreen.Bounds.Width / 2 - _sizeDefault.Width / 2, Screen.PrimaryScreen.Bounds.Height / 2 - _sizeDefault.Height / 2, _sizeDefault.Width, _sizeDefault.Height);
 
                     // if (_gameProcess == null) return;
-                    GetiHandle();
+                    GetIHandle();
                     Win32Bot.HideApp(iHandle);
                     //  SetParent(_gameProcess.MainWindowHandle, panel_game.Handle); // ดึงเข้า
                     //  MoveWindow(_gameProcess.MainWindowHandle, -BorderPoint.X, -BorderPoint.Y, panel_game.Width + BorderSize.Width, panel_game.Height + BorderSize.Height, true); // ย่อ
@@ -1622,7 +1559,7 @@ namespace TFive_Auto_Click
                 else
                 {
                     // if (_gameProcess == null) return;
-                    GetiHandle();
+                    GetIHandle();
                     Win32Bot.ShowAPP(iHandle);
                     //  SetParent(_gameProcess.MainWindowHandle, IntPtr.Zero); //ดึงออก
                     //  MoveWindow(_gameProcess.MainWindowHandle, DefaultRect.X, DefaultRect.Y, DefaultRect.Width, DefaultRect.Height, true); //ขยาย
