@@ -83,6 +83,7 @@ namespace TFive_Auto_Click
             Settings.Default.OpenEasy = cb_easyList.CheckedState;
             Settings.Default.StartKey = comboStart.SelectedIndex;
             Settings.Default.Lang = cbbLanguages.SelectedIndex;
+            Settings.Default.Log = cb_logs.CheckedState;
             switch (WindowState)
             {
                 case FormWindowState.Maximized:
@@ -114,6 +115,7 @@ namespace TFive_Auto_Click
             Size = new Size(Settings.Default.sizeWidth, Settings.Default.sizeHeight);
             cb_topMost.CheckedState = Settings.Default.topMost;
             cb_easyList.CheckedState = Settings.Default.OpenEasy;
+            cb_logs.CheckedState = Settings.Default.Log;
             pictureBox1.Image = TFive_UI.Properties.Resources.T5___Text720;
             comboStart.SelectedIndex = Settings.Default.StartKey;
             InitLocalization();
@@ -247,6 +249,7 @@ namespace TFive_Auto_Click
             try
             {
                 ResetGrid();
+                ResetProtect();
                 using (var bw = new BinaryReader(File.Open(file, FileMode.Open)))
                 {
                     var column = bw.ReadInt32();
@@ -785,6 +788,7 @@ namespace TFive_Auto_Click
 
         private void showHideToolStripMenuItem_CheckedChanged(object sender, EventArgs e)
         {
+            
             if (showHideToolStripMenuItem.Checked) // Show
             {
                 panel_protect.Dock = DockStyle.Fill;
@@ -792,7 +796,13 @@ namespace TFive_Auto_Click
             }
             else // Hide
             {
-                _passUnlock = TFiveInputBox.Show("Input Password '8' Keys", 8);
+                if (!_protectOn)
+                {
+                    panel_protect.Visible = false;
+                    return;
+                }
+
+                _passUnlock = TFiveInputBox.Show("Input Password '8' Keys For Show", 8);
 
                 if (string.IsNullOrWhiteSpace(_passUnlock) || _passUnlock.Length < 8)
                 {

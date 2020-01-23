@@ -26,7 +26,7 @@ namespace TFive_Auto_Click
            int lParam);
         public static int MakeLParam(int LoWord, int HiWord)
         {
-            return (int)((HiWord << 16) | (LoWord & 0xFFFF));
+            return (HiWord << 16) | (LoWord & 0xFFFF);
         }
         [DllImport("User32.dll")]
         public static extern long SetCursorPos(int x, int y);
@@ -87,9 +87,8 @@ namespace TFive_Auto_Click
         #endregion
         public static Size GetControlSize(IntPtr iHandle)
         {
-            Rect pRect;
-            Size cSize = new Size();
-            GetWindowRect(iHandle, out pRect);
+            var cSize = new Size();
+            GetWindowRect(iHandle, out var pRect);
             cSize.Width = pRect.Right - pRect.Left;
             cSize.Height = pRect.Bottom - pRect.Top;
             WinSizeWidth = cSize.Width;
@@ -202,9 +201,10 @@ namespace TFive_Auto_Click
         public static string GetWinTitle(IntPtr iHandle)
         {
             const int nChars = 256;
-            StringBuilder Buff = new StringBuilder(nChars);
-            return GetWindowText(iHandle, Buff, nChars) > 0 ? Buff.ToString() : null;
+            var buff = new StringBuilder(nChars);
+            return GetWindowText(iHandle, buff, nChars) > 0 ? buff.ToString() : null;
         }
+
         public static void SendKeyBG(IntPtr iHandle, Keys key, int delay)
         {
             PostMessage(iHandle, WM_KEYDOWN, (int)key, 0);
