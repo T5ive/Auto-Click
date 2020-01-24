@@ -1,15 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28010.2050
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29709.97
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Auto Click BG", "Auto Click BG\Auto Click BG.csproj", "{52E9E1B1-AB76-4038-8734-384794B12337}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Magnifying Glass", "Magnifying Glass\Magnifying Glass.csproj", "{36CD65CE-3230-4179-AD89-2B820DFD8D5D}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TFive Theme", "TFive Theme\TFive Theme.csproj", "{F61532F4-3B0A-46C9-B618-9DE4F8063E1F}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Win32", "Win32\Win32.csproj", "{058D8319-697A-4AFE-B358-F4DFC50FDDC9}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TFive UI", "TFive UI\TFive UI.csproj", "{B4C543E6-F49D-403D-8275-AB212DF3039D}"
 EndProject
@@ -25,18 +19,6 @@ Global
 		{52E9E1B1-AB76-4038-8734-384794B12337}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{52E9E1B1-AB76-4038-8734-384794B12337}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{52E9E1B1-AB76-4038-8734-384794B12337}.Release|Any CPU.Build.0 = Release|Any CPU
-		{36CD65CE-3230-4179-AD89-2B820DFD8D5D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{36CD65CE-3230-4179-AD89-2B820DFD8D5D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{36CD65CE-3230-4179-AD89-2B820DFD8D5D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{36CD65CE-3230-4179-AD89-2B820DFD8D5D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F61532F4-3B0A-46C9-B618-9DE4F8063E1F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F61532F4-3B0A-46C9-B618-9DE4F8063E1F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F61532F4-3B0A-46C9-B618-9DE4F8063E1F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F61532F4-3B0A-46C9-B618-9DE4F8063E1F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{058D8319-697A-4AFE-B358-F4DFC50FDDC9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{058D8319-697A-4AFE-B358-F4DFC50FDDC9}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{058D8319-697A-4AFE-B358-F4DFC50FDDC9}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{058D8319-697A-4AFE-B358-F4DFC50FDDC9}.Release|Any CPU.Build.0 = Release|Any CPU
 		{B4C543E6-F49D-403D-8275-AB212DF3039D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{B4C543E6-F49D-403D-8275-AB212DF3039D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B4C543E6-F49D-403D-8275-AB212DF3039D}.Release|Any CPU.ActiveCfg = Release|Any CPU

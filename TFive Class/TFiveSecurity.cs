@@ -14,7 +14,7 @@ namespace TFive_Class
         {
             string result;
             var str = PasswordNeed8;
-            using (var descryptoServiceProvider = new DESCryptoServiceProvider())
+            using (var decryptServiceProvider = new DESCryptoServiceProvider())
             {
                 if (!string.IsNullOrEmpty(inputString))
                 {
@@ -35,7 +35,7 @@ namespace TFive_Class
                     inputString = inputString.Replace('_', '/');
                     var bytes = Encoding.UTF8.GetBytes(inputString);
                     var memoryStream = new MemoryStream();
-                    var transform = descryptoServiceProvider.CreateEncryptor(rgbKey, rgbIV);
+                    var transform = decryptServiceProvider.CreateEncryptor(rgbKey, rgbIV);
                     using (var cryptoStream = new CryptoStream(memoryStream, transform, CryptoStreamMode.Write))
                     {
                         cryptoStream.Write(bytes, 0, bytes.Length);
@@ -56,7 +56,7 @@ namespace TFive_Class
         {
             string result;
             var str = PasswordNeed8;
-            using (var descryptoServiceProvider = new DESCryptoServiceProvider())
+            using (var decryptServiceProvider = new DESCryptoServiceProvider())
             {
                 var memoryStream = new MemoryStream();
                 var utf = Encoding.UTF8;
@@ -74,7 +74,7 @@ namespace TFive_Class
                     };
                     var rgbKey = Encoding.UTF8.GetBytes(str);
                     var array = Convert.FromBase64String(inputString);
-                    using (var transform = descryptoServiceProvider.CreateDecryptor(rgbKey, rgbIV))
+                    using (var transform = decryptServiceProvider.CreateDecryptor(rgbKey, rgbIV))
                     {
                         CryptoStream cryptoStream;
                         using (cryptoStream = new CryptoStream(memoryStream, transform, CryptoStreamMode.Write))
@@ -117,16 +117,16 @@ namespace TFive_Class
                 keyBytes = password.GetBytes(keysize / 8);
             }
 
-            ICryptoTransform encryptor;
+            ICryptoTransform encryption;
             using (var symmetricKey = new RijndaelManaged())
             {
                 symmetricKey.Mode = CipherMode.CBC;
-                encryptor = symmetricKey.CreateEncryptor(keyBytes, initVectorBytes);
+                encryption = symmetricKey.CreateEncryptor(keyBytes, initVectorBytes);
             }
 
             var memoryStream = new MemoryStream();
             byte[] cipherTextBytes;
-            using (var cryptoStream = new CryptoStream(memoryStream, encryptor, CryptoStreamMode.Write))
+            using (var cryptoStream = new CryptoStream(memoryStream, encryption, CryptoStreamMode.Write))
             {
                 cryptoStream.Write(plainTextBytes, 0, plainTextBytes.Length);
                 cryptoStream.FlushFinalBlock();
@@ -148,17 +148,17 @@ namespace TFive_Class
                 keyBytes = password.GetBytes(keysize / 8);
             }
 
-            ICryptoTransform decryptor;
+            ICryptoTransform decryption;
             using (var symmetricKey = new RijndaelManaged())
             {
                 symmetricKey.Mode = CipherMode.CBC;
-                decryptor = symmetricKey.CreateDecryptor(keyBytes, initVectorBytes);
+                decryption = symmetricKey.CreateDecryptor(keyBytes, initVectorBytes);
             }
 
             var memoryStream = new MemoryStream(cipherTextBytes);
             byte[] plainTextBytes;
             int decryptedByteCount;
-            using (var cryptoStream = new CryptoStream(memoryStream, decryptor, CryptoStreamMode.Read))
+            using (var cryptoStream = new CryptoStream(memoryStream, decryption, CryptoStreamMode.Read))
             {
                 plainTextBytes = new byte[cipherTextBytes.Length];
                 decryptedByteCount = cryptoStream.Read(plainTextBytes, 0, plainTextBytes.Length);

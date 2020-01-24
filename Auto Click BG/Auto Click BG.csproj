@@ -76,6 +76,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controller\Win32.cs" />
     <Compile Include="Form\FrmColorInfo.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -100,9 +101,9 @@
     <Compile Include="Form\FrmSleep.Designer.cs">
       <DependentUpon>FrmSleep.cs</DependentUpon>
     </Compile>
-    <Compile Include="ColorController\GetAppName.cs" />
-    <Compile Include="ColorController\Getcolor.cs" />
-    <Compile Include="ColorController\Win32Bot.cs" />
+    <Compile Include="Controller\GetAppName.cs" />
+    <Compile Include="Controller\Getcolor.cs" />
+    <Compile Include="Controller\Win32Bot.cs" />
     <Compile Include="Form\FrmMain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -206,25 +207,13 @@
     <None Include="Resources\skipFalse.png" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Magnifying Glass\Magnifying Glass.csproj">
-      <Project>{36cd65ce-3230-4179-ad89-2b820dfd8d5d}</Project>
-      <Name>Magnifying Glass</Name>
-    </ProjectReference>
     <ProjectReference Include="..\TFive Class\TFive Class.csproj">
       <Project>{64a873cd-ad32-4e99-a9c7-d46d45b56910}</Project>
       <Name>TFive Class</Name>
     </ProjectReference>
-    <ProjectReference Include="..\TFive Theme\TFive Theme.csproj">
-      <Project>{f61532f4-3b0a-46c9-b618-9de4f8063e1f}</Project>
-      <Name>TFive Theme</Name>
-    </ProjectReference>
     <ProjectReference Include="..\TFive UI\TFive UI.csproj">
       <Project>{b4c543e6-f49d-403d-8275-ab212df3039d}</Project>
       <Name>TFive UI</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Win32\Win32.csproj">
-      <Project>{058d8319-697a-4afe-b358-f4dfc50fddc9}</Project>
-      <Name>Win32</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

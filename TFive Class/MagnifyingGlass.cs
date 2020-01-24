@@ -5,7 +5,7 @@ using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
 using System.Windows.Forms;
 
-namespace Magnifying_Glass
+namespace TFive_Class
 {
     public class MagnifyingGlass : UserControl
     {

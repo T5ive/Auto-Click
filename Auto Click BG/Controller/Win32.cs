@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.InteropServices;
 
-namespace Win32
+namespace TFive_Auto_Click
 {
     public static class Win32
     {

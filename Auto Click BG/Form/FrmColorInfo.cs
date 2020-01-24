@@ -149,9 +149,9 @@ namespace TFive_Auto_Click
                 PT.X = pt.X;
                 PT.Y = pt.Y;
                 ScreenToClient(mainWnd, ref PT);
-                txt_title.Text = Win32.Win32.GetWindowText(mainWnd);
+                txt_title.Text = Win32.GetWindowText(mainWnd);
                 GetAppName.APP = txt_title.Text;
-                txt_class.Text = Win32.Win32.GetClassName(mainWnd);
+                txt_class.Text = Win32.GetClassName(mainWnd);
                 GetAppName.CLASS = txt_class.Text;
 
 
@@ -234,9 +234,9 @@ namespace TFive_Auto_Click
                 PT.X = pt.X;
                 PT.Y = pt.Y;
                 ScreenToClient(mainWnd, ref PT);
-                txt_title.Text = Win32.Win32.GetWindowText(mainWnd);
+                txt_title.Text = Win32.GetWindowText(mainWnd);
                 GetAppName.APP = txt_title.Text;
-                txt_class.Text = Win32.Win32.GetClassName(mainWnd);
+                txt_class.Text = Win32.GetClassName(mainWnd);
                 GetAppName.CLASS = txt_class.Text;
                 _getApp.AppName();
                 txt_clickX.Text = PT.X.ToString();

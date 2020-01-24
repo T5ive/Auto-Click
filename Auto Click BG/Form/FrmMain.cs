@@ -26,24 +26,15 @@ namespace TFive_Auto_Click
 
         protected virtual void CheckFile()
         {
-            if (!File.Exists("TFive Magnify.dll"))
-            {
-                MessageBox.Show(@"File ""TFive Magnify.dll"" is missing!!", @"TFive Auto Click", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                Application.Exit();
-            }
-            if (!File.Exists("TFive Theme.dll"))
-            {
-                MessageBox.Show(@"File ""TFive Theme.dll"" is missing!!", @"TFive Auto Click", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                Application.Exit();
-            }
+            
             if (!File.Exists("TFive UI.dll"))
             {
                 MessageBox.Show(@"File ""TFive UI.dll"" is missing!!", @"TFive Auto Click", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 Application.Exit();
             }
-            if (!File.Exists("TFive Win32.dll"))
+            if (!File.Exists("TFive Class.dll"))
             {
-                MessageBox.Show(@"File ""TFive Win32.dll"" is missing!!", @"TFive Auto Click", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(@"File ""TFive Class.dll"" is missing!!", @"TFive Auto Click", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 Application.Exit();
             }
         }
@@ -773,7 +764,7 @@ namespace TFive_Auto_Click
                 _creator = TFiveInputBox.Show("Input Your Name (Creator/Credit)");
                 if (string.IsNullOrWhiteSpace(_creator))
                 {
-                    _creator = "T" + "Five";
+                    _creator = @"T"+"F"+"i"+"v"+"e";
                 }
 
                 TFiveSecurity.PasswordNeed8 = _passOriginal;
